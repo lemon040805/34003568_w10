@@ -1,15 +1,18 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "Drug Addiction in Malaysia by State (per 100,000 population, 2021)",
-    "subtitle": "Source: DOSM (pop), NADA/AADK (cases) • Projection: Equal Earth • Includes 10° graticule",
-    "anchor": "start"
-  },
   "width": 760,
   "height": 520,
+  "title": "Drug Addiction in Malaysia by State (per 1,000 population, 2021)",
   "projection": {"type": "equalEarth", "rotate": [-110, 0, 0]},
   "background": "#f9fbff",
   "layer": [
+    {
+      "data": {
+        "url": "mys_states.topojson", 
+        "format": {"type": "topojson", "feature": "tmp_mys_admin1"}
+      },
+      "mark": {"type": "geoshape", "fill": null, "stroke": "#9fb0c8", "strokeWidth": 0.6}
+    },
     {
       "name": "graticule",
       "data": {"graticule": {"step": [10, 10]}},
@@ -29,14 +32,14 @@
           "key": "state",
           "fields": ["population"]
         }},
-        {"calculate": "datum.addicts && datum.population ? datum.addicts / datum.population : null", "as": "rate_per_1000"}
+        {"calculate": "datum.addicts && datum.population ? datum.addicts / datum.population : null", "as": "rate_per_1k"}
       ],
       "mark": {"type": "geoshape"},
       "encoding": {
         "color": {
-          "field": "rate_per_100k",
+          "field": "rate_per_1k",
           "type": "quantitative",
-          "title": "Cases per 100k",
+          "title": "Cases per 1k",
           "scale": {"scheme": "blues"},
           "legend": {"orient": "right"}
         },
@@ -44,14 +47,9 @@
           {"field": "properties.state", "title": "State"},
           {"field": "addicts", "title": "Cases (abs)"},
           {"field": "population", "title": "Population"},
-          {"field": "rate_per_100k", "title": "Per 100k", "format": ".1f"}
+          {"field": "rate_per_1k", "title": "Per 1k", "format": ".1f"}
         ]
       }
-    },
-    {
-      "name": "state-borders",
-      "data": {"url": "mys_states.topojson", "format": {"type": "topojson", "feature": "tmp_mys_admin1"}},
-      "mark": {"type": "geoshape", "fill": null, "stroke": "#9fb0c8", "strokeWidth": 0.6}
     }
   ],
   "config": {
