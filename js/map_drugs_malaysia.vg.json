@@ -20,7 +20,7 @@
     },
     {
       "name": "states",
-      "data": {"url": "mys_states.topojson", "format": {"type": "topojson", "feature": "mys_states"}},
+      "data": {"url": "mys_states.topojson", "format": {"type": "topojson", "feature": "tmp_mys_admin1"}},
       "transform": [
         {"lookup": "properties.state", "from": {
           "data": {"url": "../data/drug_by_state_2021.csv"},
@@ -65,7 +65,7 @@
       "name": "states",
       "data": {
         "url": "mys_states.topojson",
-        "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
+        "format": {"type": "topojson", "feature": "tmp_mys_admin1"}
       },
       "transform": [
         {
