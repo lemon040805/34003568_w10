@@ -59,3 +59,51 @@
     "axis": {"labelFontSize": 11, "titleFontSize": 12}
   }
 }
+
+
+,
+    {
+      "name": "states",
+      "data": {
+        "url": "mys_states.topojson",
+        "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
+      },
+      "transform": [
+        {
+          "lookup": "properties.state",
+          "from": {
+            "data": {"url": "../data/drug_by_state_2021.csv"},
+            "key": "state",
+            "fields": ["value"]
+          }
+        },
+        {
+          "lookup": "properties.state",
+          "from": {
+            "data": {"url": "../data/population_state_2021.csv"},
+            "key": "state",
+            "fields": ["population"]
+          }
+        },
+        {
+          "calculate": "datum.value",
+          "as": "rate_per_1k"
+        }
+      ],
+      "mark": {"type": "geoshape"},
+      "encoding": {
+        "color": {
+          "field": "rate_per_1k",
+          "type": "quantitative",
+          "title": "Cases per 1k",
+          "scale": {"scheme": "blues"},
+          "legend": {"orient": "right"}
+        },
+        "tooltip": [
+          {"field": "properties.state", "title": "State"},
+          {"field": "addicts", "title": "Cases (abs)"},
+          {"field": "population", "title": "Population"},
+          {"field": "rate_per_1k", "title": "Per 1k", "format": ".1f"}
+        ]
+      }
+    }
