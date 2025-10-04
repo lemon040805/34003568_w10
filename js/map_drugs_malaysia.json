@@ -26,7 +26,7 @@
         {"lookup": "properties.state", "from": {
           "data": {"url": "../data/drug_by_state_2021.csv"},
           "key": "state",
-          "fields": ["addicts"]
+          "fields": ["value"]
         }},
         {"lookup": "properties.state", "from": {
           "data": {"url": "../data/population_state_2021.csv"},
