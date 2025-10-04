@@ -33,7 +33,7 @@
           "key": "state",
           "fields": ["population"]
         }},
-        {"calculate": "datum.addicts && datum.population ? datum.addicts / datum.population : null", "as": "rate_per_1k"}
+        {"calculate": "datum.value && datum.population ? datum.value / datum.population : null", "as": "rate_per_1k"}
       ],
       "mark": {"type": "geoshape"},
       "encoding": {
