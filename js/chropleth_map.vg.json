@@ -19,7 +19,11 @@
       },
       "transform": [
         {
-        "lookup": "properties.name",
+          "calculate": "datum['properties.name'] == 'Kuala Lumpur' ? 'W.P. Kuala Lumpur' : datum['properties.name'] == 'Labuan' ? 'W.P. Labuan' : datum['properties.name'] == 'Putrajaya' ? 'W.P. Putrajaya'",
+          "as": "state_key"
+        },
+        {
+        "lookup": "state_key",
         "from": {
             "data": {
             "url": "https://raw.githubusercontent.com/lemonadee04/34003568_w9/refs/heads/main/data/state_drug_population_2021.csv"
@@ -28,7 +32,7 @@
             "fields": ["drug_addicts", "population"]
         }
         },
-        {"calculate": "datum.drug_addicts/ (datum.population * 1000) * 100000", "as": "rate_per_100k"}
+        {"calculate": "datum.drug_addicts / (datum.population * 1000) * 100000", "as": "rate_per_100k"}
     ],
     "mark": {"type": "geoshape"},
     "encoding": {
