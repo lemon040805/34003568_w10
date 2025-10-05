@@ -1,27 +1,119 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <meta charset="utf-8" />
+  <title>Drug Addiction in Malaysia by State (2021)</title>
   <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
-  
-  <!-- CSS file -->
-  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
-
-
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.8"></script>
 </head>
 <body>
-  
-<div id="choropleth_map"></div>
+  <div id="vis"></div>
+  <script>
+    const spec = {
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "title": "Drug Addiction in Malaysia by State (per 100,000 population, 2021)",
+      "width": 800,
+      "height": 400,
+      "data": {
+        "url": "https://raw.githubusercontent.com/lemonadee04/34003568_w9/main/js/MalaysiaMapWithGraticules.topojson",
+        "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
+      },
+      "projection": {"type": "equalEarth"},
+      "layer": [
+        {
+          "transform": [
+            { "calculate": "'Data is not available in ' + datum.properties.name", "as": "note" }
+          ],
+          "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"},
+          "encoding": { "tooltip": {"field": "note"} }
+        },
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/lemonadee04/34003568_w9/main/js/MalaysiaMapWithGraticules.topojson",
+            "format": {"type": "topojson", "feature": "ne_10m_graticules_5"}
+          },
+          "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
+        },
+        {
+          "transform": [
+            {
+              /* FIXED: use datum.properties.name, not datum['properties.name'] */
+              "calculate":
+                "datum.properties.name === 'Kuala Lumpur' ? 'W.P. Kuala Lumpur' :" +
+                "datum.properties.name === 'Labuan' ? 'W.P. Labuan' :" +
+                "datum.properties.name === 'Putrajaya' ? 'W.P. Putrajaya' :" +
+                "datum.properties.name",
+              "as": "state_key"
+            },
+            {
+              "lookup": "state_key",
+              "from": {
+                "data": {
+                  "url": "https://raw.githubusercontent.com/lemonadee04/34003568_w9/main/data/state_drug_population_2021.csv",
+                  "format": {"type": "csv", "parse": {"drug_addicts": "number", "population": "number"}}
+                },
+                "key": "state",
+                "fields": ["drug_addicts", "population"]
+              }
+            },
+            /* population is in '000, so per 100k = addicts / pop('000) * 100 */
+            { "calculate": "datum.drug_addicts / datum.population * 100", "as": "rate_per_100k" }
+          ],
+          "mark": {"type": "geoshape", "stroke": "white"},
+          "encoding": {
+            "color": {
+              "field": "rate_per_100k",
+              "type": "quantitative",
+              "title": "Drug addicts per 100,000 population",
+              "scale": {
+                "type": "threshold",
+                "domain": [1, 10, 100],
+                "range": ["#fdbe85", "#fd8d3c", "#e6550d", "#a63603"]
+              }
+            },
+            "tooltip": [
+              {"field": "state_key", "type": "nominal", "title": "State"},
+              {"field": "drug_addicts", "type": "quantitative", "title": "Drug addicts"},
+              {"field": "population", "type": "quantitative", "title": "Population ('000)"},
+              {"field": "rate_per_100k", "type": "quantitative", "title": "Per 100,000", "format": ".2f"}
+            ]
+          }
+        },
+        {
+          "transform": [
+            {
+              "calculate":
+                "datum.properties.name === 'Kuala Lumpur' ? 'W.P. Kuala Lumpur' :" +
+                "datum.properties.name === 'Labuan' ? 'W.P. Labuan' :" +
+                "datum.properties.name === 'Putrajaya' ? 'W.P. Putrajaya' :" +
+                "datum.properties.name",
+              "as": "state_key"
+            },
+            {
+              "lookup": "state_key",
+              "from": {
+                "data": {
+                  "url": "https://raw.githubusercontent.com/lemonadee04/34003568_w9/main/data/malaysia_state_centroids.csv",
+                  "format": {"type": "csv", "parse": {"lat": "number", "lon": "number"}}
+                },
+                "key": "state",
+                "fields": ["lat", "lon"]
+              }
+            }
+          ],
+          "mark": {"type": "text", "fontSize": 10, "dy": -2},
+          "encoding": {
+            "longitude": {"field": "lon", "type": "quantitative"},
+            "latitude": {"field": "lat", "type": "quantitative"},
+            "text": {"field": "state_key", "type": "nominal"}
+          }
+        }
+      ],
+      "config": {}
+    };
 
-<script type="text/javascript">
-
-  var spec2 = "js/choropleth_map.vg.json";
-  vegaEmbed('#choropleth_map', spec2).then(function(result) {
-    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-  }).catch(console.error);
-</script>
-
+    vegaEmbed("#vis", spec, {mode: "vega-lite"}).then(console.log).catch(console.warn);
+  </script>
 </body>
 </html>
