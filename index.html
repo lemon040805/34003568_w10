@@ -14,15 +14,10 @@
     const spec = {
       "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
 
+      /* Legend at bottom; clean view frame */
       "config": {
-        "legend": {
-          "orient": "bottom",
-          "titleAnchor": "middle",
-          "labelFontSize": 11,
-          "titleFontSize": 12,
-          "symbolSize": 80
-        },
-        "view": {"stroke": null}
+        "legend": { "orient": "bottom", "titleAnchor": "middle" },
+        "view": { "stroke": null }
       },
 
       "title": "Drug Addiction in Malaysia by State (per 100,000 population, 2021)",
@@ -31,6 +26,7 @@
       "autosize": {"type": "fit", "contains": "padding", "resize": true},
       "projection": {"type": "equalEarth"},
 
+      /* Base polygons */
       "data": {
         "url": "https://raw.githubusercontent.com/lemonadee04/34003568_w9/main/js/MalaysiaMapWithGraticules.topojson",
         "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
@@ -68,6 +64,7 @@
                 "fields": ["drug_addicts", "population"]
               }
             },
+            /* population is in '000; per 100k = addicts / pop('000) * 100 */
             {"calculate": "datum.drug_addicts / datum.population * 100", "as": "rate_per_100k"}
           ],
           "mark": {"type": "geoshape", "stroke": "white"},
@@ -95,7 +92,7 @@
           }
         },
 
-        /* Black labels on map */
+        /* Labels ON the map (centroid) */
         {
           "transform": [
             {
@@ -117,6 +114,8 @@
                 "fields": ["lat", "lon"]
               }
             },
+            /* Optional: hide WP labels if you want less clutter */
+            {"filter": "datum.state_key != 'W.P. Kuala Lumpur' && datum.state_key != 'W.P. Putrajaya'"},
             {"filter": "isValid(datum.lon) && isValid(datum.lat)"}
           ],
           "mark": {
@@ -124,16 +123,16 @@
             "fontSize": 11,
             "baseline": "middle",
             "align": "center",
-            "stroke": "white",
+            "stroke": "white",      /* halo for readability */
             "strokeWidth": 2.5,
             "strokeJoin": "round",
-            "opacity": 1
+            "opacity": 0.95
           },
           "encoding": {
             "longitude": {"field": "lon", "type": "quantitative"},
             "latitude": {"field": "lat", "type": "quantitative"},
             "text": {"field": "state_key", "type": "nominal"},
-            "color": {"value": "black"}
+            "color": {"value": "#111"}
           }
         }
       ]
