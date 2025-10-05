@@ -80,7 +80,6 @@
           }
         },
 
-        /* Labels from centroids: filter invalid coords + halo for readability */
         {
           "transform": [
             {
@@ -102,16 +101,12 @@
                 "fields": ["lat", "lon"]
               }
             },
-            /* Avoid overlapping at (0,0) when join fails */
             { "filter": "isValid(datum.lon) && isValid(datum.lat)" }
           ],
           "mark": {
             "type": "text",
             "fontSize": 10,
             "dy": -2,
-            "fill": "#1f2937",
-            "stroke": "white",
-            "strokeWidth": 3,
             "opacity": 0.9
           },
           "encoding": {
