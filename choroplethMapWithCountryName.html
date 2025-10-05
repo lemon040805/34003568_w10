@@ -64,8 +64,9 @@
       "mark": {"type": "geoshape", "stroke": "white"},
       "encoding": {
         "color": {
-          "field": "Drug addicts per 100,000 population",
+          "field": "rate_per_100k",
           "type": "quantitative",
+          "title": "Drug Addicts per 100,000 population",
           "scale": {
             "type": "threshold",
             "domain": [1, 10, 100],
@@ -75,18 +76,23 @@
         "tooltip": [
           {"field": "state_key", "type": "nominal", "title": "State"},
           {"field": "drug_addicts", "type": "quantitative"},
-          {
-            "field": "Drug addicts per 100,000 population",
-            "type": "quantitative",
-            "format": ".2f"
-          }
+          {"field": "population", "type": "quantitative", "title": "Population ('000)"},
+          {"field": "rate_per_100k", "type": "quantitative", "title": "Drug Addicts per 100,000 population", "format": ".2f"}
         ]
       }
     },
     {
       "transform": [
         {
-          "lookup": "properties.name",
+            "calculate":
+            "datum['properties.name'] === 'Kuala Lumpur' ? 'W.P. Kuala Lumpur' :" +
+            "datum['properties.name'] === 'Labuan' ? 'W.P. Labuan' :" +
+            "datum['properties.name'] === 'Putrajaya' ? 'W.P. Putrajaya' :" +
+            "datum['properties.name']",
+            "as": "state_key"
+        },
+        {
+          "lookup": "state_key",
           "from": {
             "data": {
               "url": "https://raw.githubusercontent.com/lemonadee04/34003568_w9/refs/heads/main/data/malaysia_state_centroids.csv"
@@ -100,14 +106,14 @@
       "encoding": {
         "longitude": {"field": "lon", "type": "quantitative"},
         "latitude": {"field": "lat", "type": "quantitative"},
-        "text": {"field": "properties.name", "type": "nominal"},
-        "opacity": {
-          "condition": {
-            "test": "datum['properties.name'] == 'Sarawak' || datum['properties.name'] == 'Sarawak' || datum['properties.name'] == 'Selangor' || datum['properties.name'] == 'Selangor'",
-            "value": 1
-          },
-          "value": 0
-        }
+        "text": {"field": "state_key", "type": "nominal"},
+        // "opacity": {
+        //   "condition": {
+        //     "test": "datum.state_key === 'Sarawak' || datum.state_key === 'Selangor'",
+        //     "value": 1
+        //   },
+        //   "value": 0
+        // }
       }
     }
   ],
