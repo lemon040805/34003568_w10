@@ -38,8 +38,13 @@
             "type": "quantitative",
             "title": "Population ('000)",
             "scale": {"scheme": "reds"}
-          }
+          },
+          "tooltip": [
+            {"field": "drug_addicts", "type": "quantitative", "title": "Drug addicts count"},
+            {"field": "population", "type": "quantitative", "title": "Population ('000)"}
+          ]
         }
+        
       }
     ]
 }
