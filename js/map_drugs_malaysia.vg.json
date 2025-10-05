@@ -1,108 +1,114 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 760,
-  "height": 520,
-  "title": "Drug Addiction in Malaysia by State (per 1,000 population, 2021)",
-  "projection": {"type": "equalEarth", "rotate": [-110, 0, 0]},
-  "background": "#f9fbff",
-  "layer": [
-    {
-      "data": {
-        "url": "mys_states.topojson",
-        "format": {"type": "topojson", "feature": "tmp_mys_admin1"}
-      },
-      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
-    },
-    {
-      "name": "graticule",
-      "data": {"graticule": {"step": [10, 10]}},
-      "mark": {"type": "geoshape", "stroke": "#d0d7e2", "strokeWidth": 0.6, "fill": null}
-    },
-    {
-      "name": "states",
-      "data": {"url": "mys_states.topojson", "format": {"type": "topojson", "feature": "tmp_mys_admin1"}},
-      "transform": [
-        {"lookup": "properties.state", "from": {
-          "data": {"url": "../data/drug_by_state_2021.csv"},
-          "key": "state",
-          "fields": ["value"]
-        }},
-        {"lookup": "properties.state", "from": {
-          "data": {"url": "../data/population_state_2021.csv"},
-          "key": "state",
-          "fields": ["population"]
-        }},
-        {"calculate": "datum.value && datum.population ? datum.value / datum.population : null", "as": "rate_per_1k"}
-      ],
-      "mark": {"type": "geoshape"},
-      "encoding": {
-        "color": {
-          "field": "rate_per_1k",
-          "type": "quantitative",
-          "title": "Cases per 1k",
-          "scale": {"scheme": "blues"},
-          "legend": {"orient": "right"}
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 800,
+    "height": 450,
+    "title": "Drug Addiction in Malaysia by State (per 1,000 population, 2021)",
+    "projection": {"type": "equalEarth"},
+    "layer": [
+      {
+        "data": {
+          "url": "ne_10m.topojson",
+          "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
         },
-        "tooltip": [
-          {"field": "properties.state", "title": "State"},
-          {"field": "addicts", "title": "Cases (abs)"},
-          {"field": "population", "title": "Population"},
-          {"field": "rate_per_1k", "title": "Per 1k", "format": ".1f"}
-        ]
-      }
-    }
-  ],
-  "config": {
-    "view": {"stroke": null},
-    "style": {"cell": {"stroke": null}},
-    "axis": {"labelFontSize": 11, "titleFontSize": 12}
-  }
-}
-
-
-,
-    {
-      "name": "states",
-      "data": {
-        "url": "mys_states.topojson",
-        "format": {"type": "topojson", "feature": "tmp_mys_admin1"}
+        "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
       },
-      "transform": [
-        {
-          "lookup": "properties.state",
-          "from": {
+      {
+        "data": {
+          "url": "mys_states.topojson",
+          "format": {"type": "topojson", "feature": "tmp_mys_admin1"}
+        },
+        "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+      },
+      {
+        "name": "graticule",
+        "data": {"graticule": {"step": [10, 10]}},
+        "mark": {"type": "geoshape", "stroke": "#d0d7e2", "strokeWidth": 0.6, "fill": null}
+      },
+      {
+        "name": "states",
+        "data": {"url": "mys_states.topojson", "format": {"type": "topojson", "feature": "tmp_mys_admin1"}},
+        "transform": [
+          {"lookup": "properties.state", "from": {
             "data": {"url": "../data/drug_by_state_2021.csv"},
             "key": "state",
             "fields": ["value"]
-          }
-        },
-        {
-          "lookup": "properties.state",
-          "from": {
+          }},
+          {"lookup": "properties.state", "from": {
             "data": {"url": "../data/population_state_2021.csv"},
             "key": "state",
             "fields": ["population"]
-          }
-        },
-        {
-          "calculate": "datum.value",
-          "as": "rate_per_1k"
+          }},
+          {"calculate": "datum.value && datum.population ? datum.value / datum.population : null", "as": "rate_per_1k"}
+        ],
+        "mark": {"type": "geoshape"},
+        "encoding": {
+          "color": {
+            "field": "rate_per_1k",
+            "type": "quantitative",
+            "title": "Cases per 1k",
+            "scale": {"scheme": "blues"},
+            "legend": {"orient": "right"}
+          },
+          "tooltip": [
+            {"field": "properties.state", "title": "State"},
+            {"field": "addicts", "title": "Cases (abs)"},
+            {"field": "population", "title": "Population"},
+            {"field": "rate_per_1k", "title": "Per 1k", "format": ".1f"}
+          ]
         }
-      ],
-      "mark": {"type": "geoshape"},
-      "encoding": {
-        "color": {
-          "field": "rate_per_1k",
-          "type": "quantitative",
-          "title": "Cases per 1k",
-          "scale": {"scheme": "blues"},
-          "legend": {"orient": "right"}
-        },
-        "tooltip": [
-          {"field": "properties.state", "title": "State"},
-          {"field": "addicts", "title": "Cases (abs)"},
-          {"field": "population", "title": "Population"},
-          {"field": "rate_per_1k", "title": "Per 1k", "format": ".1f"}
-        ]
       }
+    ],
+    "config": {
+      "view": {"stroke": null},
+      "style": {"cell": {"stroke": null}},
+      "axis": {"labelFontSize": 11, "titleFontSize": 12}
     }
+  }
+
+
+  ,
+      {
+        "name": "states",
+        "data": {
+          "url": "mys_states.topojson",
+          "format": {"type": "topojson", "feature": "tmp_mys_admin1"}
+        },
+        "transform": [
+          {
+            "lookup": "properties.state",
+            "from": {
+              "data": {"url": "../data/drug_by_state_2021.csv"},
+              "key": "state",
+              "fields": ["value"]
+            }
+          },
+          {
+            "lookup": "properties.state",
+            "from": {
+              "data": {"url": "../data/population_state_2021.csv"},
+              "key": "state",
+              "fields": ["population"]
+            }
+          },
+          {
+            "calculate": "datum.value",
+            "as": "rate_per_1k"
+          }
+        ],
+        "mark": {"type": "geoshape"},
+        "encoding": {
+          "color": {
+            "field": "rate_per_1k",
+            "type": "quantitative",
+            "title": "Cases per 1k",
+            "scale": {"scheme": "blues"},
+            "legend": {"orient": "right"}
+          },
+          "tooltip": [
+            {"field": "properties.state", "title": "State"},
+            {"field": "addicts", "title": "Cases (abs)"},
+            {"field": "population", "title": "Population"},
+            {"field": "rate_per_1k", "title": "Per 1k", "format": ".1f"}
+          ]
+        }
+      }
