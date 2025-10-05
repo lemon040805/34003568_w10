@@ -6,12 +6,12 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px;         
+  padding: 40px;
   box-sizing: border-box;
 }
 
 #vis {
   width: 90%;
-  height: 85vh;           
+  height: 85vh;
   margin: 0;
 }
