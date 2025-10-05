@@ -14,167 +14,65 @@
     const spec = {
       "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
 
-      /* Top-level config so it applies correctly */
+      /* Legend at bottom; clean view frame */
       "config": {
-        "legend": {
-          "orient": "bottom",
-          "titleAnchor": "middle",
-          "labelFontSize": 11,
-          "titleFontSize": 12,
-          "symbolSize": 80
-        },
-        "view": {"stroke": null}
+        "legend": { "orient": "bottom", "titleAnchor": "middle" },
+        "view": { "stroke": null }
       },
 
-      "vconcat": [
-        /* ========== MAP (Top) ========== */
-        {
-          "title": "Drug Addiction in Malaysia by State (per 100,000 population, 2021)",
-          "width": "container",
-          "height": 480,
-          "autosize": {"type": "fit", "contains": "padding", "resize": true},
-          "projection": {"type": "equalEarth"},
+      "title": "Drug Addiction in Malaysia by State (per 100,000 population, 2021)",
+      "width": "container",
+      "height": 520,
+      "autosize": {"type": "fit", "contains": "padding", "resize": true},
+      "projection": {"type": "equalEarth"},
 
-          /* Basemap polygons */
+      /* Base polygons */
+      "data": {
+        "url": "https://raw.githubusercontent.com/lemonadee04/34003568_w9/main/js/MalaysiaMapWithGraticules.topojson",
+        "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
+      },
+
+      "layer": [
+        /* Graticules */
+        {
           "data": {
             "url": "https://raw.githubusercontent.com/lemonadee04/34003568_w9/main/js/MalaysiaMapWithGraticules.topojson",
-            "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
+            "format": {"type": "topojson", "feature": "ne_10m_graticules_5"}
           },
-
-          "layer": [
-            /* Graticules */
-            {
-              "data": {
-                "url": "https://raw.githubusercontent.com/lemonadee04/34003568_w9/main/js/MalaysiaMapWithGraticules.topojson",
-                "format": {"type": "topojson", "feature": "ne_10m_graticules_5"}
-              },
-              "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
-            },
-
-            /* Choropleth with name normalization + data join */
-            {
-              "transform": [
-                {
-                  "calculate":
-                    "datum.properties.name === 'Kuala Lumpur' ? 'W.P. Kuala Lumpur' :" +
-                    "datum.properties.name === 'Labuan' ? 'W.P. Labuan' :" +
-                    "datum.properties.name === 'Putrajaya' ? 'W.P. Putrajaya' :" +
-                    "datum.properties.name",
-                  "as": "state_key"
-                },
-                {
-                  "lookup": "state_key",
-                  "from": {
-                    "data": {
-                      "url": "https://raw.githubusercontent.com/lemonadee04/34003568_w9/main/data/state_drug_population_2021.csv",
-                      "format": {"type": "csv", "parse": {"drug_addicts": "number", "population": "number"}}
-                    },
-                    "key": "state",
-                    "fields": ["drug_addicts", "population"]
-                  }
-                },
-                /* population is in '000; per 100k = addicts / pop('000) * 100 */
-                {"calculate": "datum.drug_addicts / datum.population * 100", "as": "rate_per_100k"}
-              ],
-              "mark": {"type": "geoshape", "stroke": "white"},
-              "encoding": {
-                "color": {
-                  "field": "rate_per_100k",
-                  "type": "quantitative",
-                  "title": "Drug addicts per 100,000",
-                  "legend": {"orient": "bottom"},
-                  "scale": {
-                    "type": "threshold",
-                    "domain": [1, 3, 5, 8, 11, 14, 17, 20],
-                    "range": [
-                      "#fff5eb","#fee6ce","#fdd0a2","#fdae6b",
-                      "#fd8d3c","#f16913","#d94801","#a63603","#7f2704"
-                    ]
-                  }
-                },
-                "tooltip": [
-                  {"field": "state_key", "type": "nominal", "title": "State"},
-                  {"field": "drug_addicts", "type": "quantitative", "title": "Drug addicts"},
-                  {"field": "population", "type": "quantitative", "title": "Population ('000)"},
-                  {"field": "rate_per_100k", "type": "quantitative", "title": "Per 100,000", "format": ".2f"}
-                ]
-              }
-            },
-
-            /* Labels: nudged just outside the land but clipped inside the map */
-            {
-              "transform": [
-                {
-                  "calculate":
-                    "datum.properties.name === 'Kuala Lumpur' ? 'W.P. Kuala Lumpur' :" +
-                    "datum.properties.name === 'Labuan' ? 'W.P. Labuan' :" +
-                    "datum.properties.name === 'Putrajaya' ? 'W.P. Putrajaya' :" +
-                    "datum.properties.name",
-                  "as": "state_key"
-                },
-                {
-                  "lookup": "state_key",
-                  "from": {
-                    "data": {
-                      "url": "https://raw.githubusercontent.com/lemonadee04/34003568_w9/main/data/malaysia_state_centroids.csv",
-                      "format": {"type": "csv", "parse": {"lat": "number", "lon": "number"}}
-                    },
-                    "key": "state",
-                    "fields": ["lat", "lon"]
-                  }
-                },
-                /* Hide WP KL & Putrajaya labels if desired */
-                {"filter": "datum.state_key != 'W.P. Kuala Lumpur' && datum.state_key != 'W.P. Putrajaya'"},
-                /* Heuristic nudge: Peninsula (lon < 110) left; Borneo right */
-                {"calculate": "datum.lon < 110 ? -10 : 10", "as": "dx"},
-                {"calculate": "datum.lon < 110 ? 'right' : 'left'", "as": "align"}
-              ],
-              "mark": {
-                "type": "text",
-                "fontSize": 11,
-                "baseline": "middle",
-                "clip": true,                 /* keep labels within map view */
-                "stroke": "white",            /* halo for contrast */
-                "strokeWidth": 2.5,
-                "strokeJoin": "round",
-                "opacity": 0.95
-              },
-              "encoding": {
-                "longitude": {"field": "lon", "type": "quantitative"},
-                "latitude": {"field": "lat", "type": "quantitative"},
-                "text": {"field": "state_key", "type": "nominal"},
-                "dx": {"field": "dx", "type": "quantitative"},
-                "align": {"field": "align", "type": "nominal"},
-                "color": {"value": "#111"}
-              }
-            }
-          ]
+          "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
         },
 
-        /* ========== STATE LIST (Bottom, excluding KL & Putrajaya) ========== */
+        /* Choropleth */
         {
-          "width": "container",
-          "height": {"step": 18},
-          "data": {
-            "url": "https://raw.githubusercontent.com/lemonadee04/34003568_w9/main/data/state_drug_population_2021.csv",
-            "format": {"type": "csv", "parse": {"drug_addicts": "number", "population": "number"}}
-          },
           "transform": [
-            {"filter": "datum.state != 'W.P. Kuala Lumpur' && datum.state != 'W.P. Putrajaya'"},
+            {
+              "calculate":
+                "datum.properties.name === 'Kuala Lumpur' ? 'W.P. Kuala Lumpur' :" +
+                "datum.properties.name === 'Labuan' ? 'W.P. Labuan' :" +
+                "datum.properties.name === 'Putrajaya' ? 'W.P. Putrajaya' :" +
+                "datum.properties.name",
+              "as": "state_key"
+            },
+            {
+              "lookup": "state_key",
+              "from": {
+                "data": {
+                  "url": "https://raw.githubusercontent.com/lemonadee04/34003568_w9/main/data/state_drug_population_2021.csv",
+                  "format": {"type": "csv", "parse": {"drug_addicts": "number", "population": "number"}}
+                },
+                "key": "state",
+                "fields": ["drug_addicts", "population"]
+              }
+            },
+            /* population is in '000; per 100k = addicts / pop('000) * 100 */
             {"calculate": "datum.drug_addicts / datum.population * 100", "as": "rate_per_100k"}
           ],
-          "mark": {"type": "text", "align": "left", "fontSize": 12},
+          "mark": {"type": "geoshape", "stroke": "white"},
           "encoding": {
-            "y": {
-              "field": "state",
-              "type": "nominal",
-              "sort": {"field": "rate_per_100k", "order": "descending"}
-            },
-            "text": {"field": "state", "type": "nominal"},
             "color": {
               "field": "rate_per_100k",
               "type": "quantitative",
-              "title": "Per 100,000",
+              "title": "Drug addicts per 100,000",
               "scale": {
                 "type": "threshold",
                 "domain": [1, 3, 5, 8, 11, 14, 17, 20],
@@ -182,10 +80,60 @@
                   "#fff5eb","#fee6ce","#fdd0a2","#fdae6b",
                   "#fd8d3c","#f16913","#d94801","#a63603","#7f2704"
                 ]
+              },
+              "legend": {"orient": "bottom"}
+            },
+            "tooltip": [
+              {"field": "state_key", "type": "nominal", "title": "State"},
+              {"field": "drug_addicts", "type": "quantitative", "title": "Drug addicts"},
+              {"field": "population", "type": "quantitative", "title": "Population ('000)"},
+              {"field": "rate_per_100k", "type": "quantitative", "title": "Per 100,000", "format": ".2f"}
+            ]
+          }
+        },
+
+        /* Labels ON the map (centroid) */
+        {
+          "transform": [
+            {
+              "calculate":
+                "datum.properties.name === 'Kuala Lumpur' ? 'W.P. Kuala Lumpur' :" +
+                "datum.properties.name === 'Labuan' ? 'W.P. Labuan' :" +
+                "datum.properties.name === 'Putrajaya' ? 'W.P. Putrajaya' :" +
+                "datum.properties.name",
+              "as": "state_key"
+            },
+            {
+              "lookup": "state_key",
+              "from": {
+                "data": {
+                  "url": "https://raw.githubusercontent.com/lemonadee04/34003568_w9/main/data/malaysia_state_centroids.csv",
+                  "format": {"type": "csv", "parse": {"lat": "number", "lon": "number"}}
+                },
+                "key": "state",
+                "fields": ["lat", "lon"]
               }
-            }
+            },
+            /* Optional: hide WP labels if you want less clutter */
+            {"filter": "datum.state_key != 'W.P. Kuala Lumpur' && datum.state_key != 'W.P. Putrajaya'"},
+            {"filter": "isValid(datum.lon) && isValid(datum.lat)"}
+          ],
+          "mark": {
+            "type": "text",
+            "fontSize": 11,
+            "baseline": "middle",
+            "align": "center",
+            "stroke": "white",      /* halo for readability */
+            "strokeWidth": 2.5,
+            "strokeJoin": "round",
+            "opacity": 0.95
           },
-          "title": "States (excluding W.P. Kuala Lumpur & W.P. Putrajaya)"
+          "encoding": {
+            "longitude": {"field": "lon", "type": "quantitative"},
+            "latitude": {"field": "lat", "type": "quantitative"},
+            "text": {"field": "state_key", "type": "nominal"},
+            "color": {"value": "#111"}
+          }
         }
       ]
     };
