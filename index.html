@@ -6,106 +6,128 @@
   <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.8"></script>
-  <style>body{margin:0}#vis{max-width:960px;margin:24px auto}</style>
+  <style>
+    body { margin: 0; background:#f7f7f8; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; }
+    #vis { max-width: 960px; margin: 24px auto; }
+  </style>
 </head>
 <body>
-<div id="vis"></div>
-<script>
-const spec = {
-  "$schema":"https://vega.github.io/schema/vega-lite/v5.json",
-  "title":"Drug Addiction in Malaysia by State (per 100,000 population, 2021)",
-  "width":800,"height":400,
-  "projection":{"type":"equalEarth"},
-  "data":{
-    "url":"https://raw.githubusercontent.com/lemonadee04/34003568_w9/main/js/MalaysiaMapWithGraticules.topojson",
-    "format":{"type":"topojson","feature":"ne_10m_admin_1_states_provinces"}
-  },
-  "layer":[
-    {
-      "transform":[
-        {"calculate":"'Data is not available in ' + datum.properties.name","as":"note"}
-      ],
-      "mark":{"type":"geoshape","fill":"lightgray","stroke":"white"},
-      "encoding":{"tooltip":{"field":"note"}} 
-    },
-    {
-      "data":{
-        "url":"https://raw.githubusercontent.com/lemonadee04/34003568_w9/main/js/MalaysiaMapWithGraticules.topojson",
-        "format":{"type":"topojson","feature":"ne_10m_graticules_5"}
+  <div id="vis"></div>
+  <script>
+    const spec = {
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "title": "Drug Addiction in Malaysia by State (per 100,000 population, 2021)",
+      "width": 800,
+      "height": 420,
+      "projection": {"type": "equalEarth"},
+      "data": {
+        "url": "https://raw.githubusercontent.com/lemonadee04/34003568_w9/main/js/MalaysiaMapWithGraticules.topojson",
+        "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
       },
-      "mark":{"type":"geoshape","fill":null,"stroke":"lightgray"}
-    },
-    {
-      "transform":[
+      "layer": [
+        /* Graticules */
         {
-          "calculate":
-            "datum.properties.name === 'Kuala Lumpur' ? 'W.P. Kuala Lumpur' :" +
-            "datum.properties.name === 'Labuan' ? 'W.P. Labuan' :" +
-            "datum.properties.name === 'Putrajaya' ? 'W.P. Putrajaya' :" +
-            "datum.properties.name",
-          "as":"state_key"
+          "data": {
+            "url": "https://raw.githubusercontent.com/lemonadee04/34003568_w9/main/js/MalaysiaMapWithGraticules.topojson",
+            "format": {"type": "topojson", "feature": "ne_10m_graticules_5"}
+          },
+          "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
         },
+
+        /* Choropleth with name normalization + data join */
         {
-          "lookup":"state_key",
-          "from":{
-            "data":{
-              "url":"https://raw.githubusercontent.com/lemonadee04/34003568_w9/main/data/state_drug_population_2021.csv",
-              "format":{"type":"csv","parse":{"drug_addicts":"number","population":"number"}}
+          "transform": [
+            {
+              "calculate":
+                "datum.properties.name === 'Kuala Lumpur' ? 'W.P. Kuala Lumpur' :" +
+                "datum.properties.name === 'Labuan' ? 'W.P. Labuan' :" +
+                "datum.properties.name === 'Putrajaya' ? 'W.P. Putrajaya' :" +
+                "datum.properties.name",
+              "as": "state_key"
             },
-            "key":"state",
-            "fields":["drug_addicts","population"]
+            {
+              "lookup": "state_key",
+              "from": {
+                "data": {
+                  "url": "https://raw.githubusercontent.com/lemonadee04/34003568_w9/main/data/state_drug_population_2021.csv",
+                  "format": {"type": "csv", "parse": {"drug_addicts": "number", "population": "number"}}
+                },
+                "key": "state",
+                "fields": ["drug_addicts", "population"]
+              }
+            },
+            /* population is in '000; per 100k = addicts / pop('000) * 100 */
+            { "calculate": "datum.drug_addicts / datum.population * 100", "as": "rate_per_100k" }
+          ],
+          "mark": {"type": "geoshape", "stroke": "white"},
+          "encoding": {
+            "color": {
+              "field": "rate_per_100k",
+              "type": "quantitative",
+              "title": "Drug addicts per 100,000",
+              "scale": {
+                "type": "threshold",
+                "domain": [1, 10, 100],
+                "range": ["#fdbe85", "#fd8d3c", "#e6550d", "#a63603"]
+              }
+            },
+            "tooltip": [
+              {"field": "state_key", "type": "nominal", "title": "State"},
+              {"field": "drug_addicts", "type": "quantitative", "title": "Drug addicts"},
+              {"field": "population", "type": "quantitative", "title": "Population ('000)"},
+              {"field": "rate_per_100k", "type": "quantitative", "title": "Per 100,000", "format": ".2f"}
+            ]
           }
         },
-        { "calculate":"datum.drug_addicts / datum.population * 100", "as":"rate_per_100k" }
-      ],
-      "mark":{"type":"geoshape","stroke":"white"},
-      "encoding":{
-        "color":{
-          "field":"rate_per_100k","type":"quantitative",
-          "title":"Drug addicts per 100,000 population",
-          "scale":{"type":"threshold","domain":[1,10,100],
-                   "range":["#fdbe85","#fd8d3c","#e6550d","#a63603"]}
-        },
-        "tooltip":[
-          {"field":"state_key","type":"nominal","title":"State"},
-          {"field":"drug_addicts","type":"quantitative","title":"Drug addicts"},
-          {"field":"population","type":"quantitative","title":"Population ('000)"},
-          {"field":"rate_per_100k","type":"quantitative","title":"Per 100,000","format":".2f"}
-        ]
-      }
-    },
-    {
-      "transform":[
+
+        /* Labels from centroids: filter invalid coords + halo for readability */
         {
-          "calculate":
-            "datum.properties.name === 'Kuala Lumpur' ? 'W.P. Kuala Lumpur' :" +
-            "datum.properties.name === 'Labuan' ? 'W.P. Labuan' :" +
-            "datum.properties.name === 'Putrajaya' ? 'W.P. Putrajaya' :" +
-            "datum.properties.name",
-          "as":"state_key"
-        },
-        {
-          "lookup":"state_key",
-          "from":{
-            "data":{
-              "url":"https://raw.githubusercontent.com/lemonadee04/34003568_w9/main/data/malaysia_state_centroids.csv",
-              "format":{"type":"csv","parse":{"lat":"number","lon":"number"}}
+          "transform": [
+            {
+              "calculate":
+                "datum.properties.name === 'Kuala Lumpur' ? 'W.P. Kuala Lumpur' :" +
+                "datum.properties.name === 'Labuan' ? 'W.P. Labuan' :" +
+                "datum.properties.name === 'Putrajaya' ? 'W.P. Putrajaya' :" +
+                "datum.properties.name",
+              "as": "state_key"
             },
-            "key":"state",
-            "fields":["lat","lon"]
+            {
+              "lookup": "state_key",
+              "from": {
+                "data": {
+                  "url": "https://raw.githubusercontent.com/lemonadee04/34003568_w9/main/data/malaysia_state_centroids.csv",
+                  "format": {"type": "csv", "parse": {"lat": "number", "lon": "number"}}
+                },
+                "key": "state",
+                "fields": ["lat", "lon"]
+              }
+            },
+            /* Avoid overlapping at (0,0) when join fails */
+            { "filter": "isValid(datum.lon) && isValid(datum.lat)" }
+          ],
+          "mark": {
+            "type": "text",
+            "fontSize": 10,
+            "dy": -2,
+            "fill": "#1f2937",
+            "stroke": "white",
+            "strokeWidth": 3,
+            "opacity": 0.9
+          },
+          "encoding": {
+            "longitude": {"field": "lon", "type": "quantitative"},
+            "latitude": {"field": "lat", "type": "quantitative"},
+            "text": {"field": "state_key", "type": "nominal"}
           }
         }
       ],
-      "mark":{"type":"text","fontSize":10,"dy":-2},
-      "encoding":{
-        "longitude":{"field":"lon","type":"quantitative"},
-        "latitude":{"field":"lat","type":"quantitative"},
-        "text":{"field":"state_key","type":"nominal"}
-      }
-    }
-  ]
-};
-vegaEmbed("#vis", spec).catch(err => { console.error(err); alert(err.message || err); });
-</script>
+      "config": {}
+    };
+
+    vegaEmbed("#vis", spec, {mode: "vega-lite"}).catch(err => {
+      console.error(err);
+      alert(err.message || err);
+    });
+  </script>
 </body>
 </html>
