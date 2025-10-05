@@ -19,7 +19,7 @@
       },
       "transform": [
         {
-          "calculate": "datum['properties.name'] == 'Kuala Lumpur' ? 'W.P. Kuala Lumpur' : datum['properties.name'] == 'Labuan' ? 'W.P. Labuan' : datum['properties.name'] == 'Putrajaya' ? 'W.P. Putrajaya'",
+          "calculate": "datum['properties.name'] == 'Kuala Lumpur' ? 'W.P. Kuala Lumpur' : datum['properties.name'] == 'Labuan' ? 'W.P. Labuan' : datum['properties.name'] == 'Putrajaya' ? 'W.P. Putrajaya' : datum['properties.name']",
           "as": "state_key"
         },
         {
