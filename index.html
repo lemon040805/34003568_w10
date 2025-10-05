@@ -9,19 +9,11 @@
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
-  <style>
-    html, body {
-      margin: 0;
-      height: 100%;
-      background: #f7f7f8;
-      font-family: Georgia, 'Times New Roman', serif;
-    }
-    #vis {
-      width: 100%;
-      height: 100vh;
-      margin: 0;
-    }
-  </style>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div id="vis"></div>
@@ -41,7 +33,6 @@
 
         const spec = {
           "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-
           "config": {
             "title": {
               "font": "Marker Felt, Comic Sans MS, sans-serif",
@@ -54,21 +45,21 @@
               "orient": "bottom",
               "direction": "horizontal",
               "titleAnchor": "middle",
-              "labelFontSize": 11,
-              "titleFontSize": 12,
-              "symbolSize": 80,
-              "titleFont": "Georgia, Times, serif",
-              "labelFont": "Georgia, Times, serif"
+              "labelFont": "Montserrat",
+              "titleFont": "Montserrat",
+              "labelColor": "black",
+              "titleColor": "black",
+              "labelFontSize": 12,
+              "titleFontSize": 13,
+              "symbolSize": 80
             },
             "view": {"stroke": null}
           },
-
           "title": "Drug Addiction in Malaysia by State (per 100,000 population, 2021)",
           "width": "container",
           "height": "container",
           "autosize": {"type": "fit", "contains": "padding", "resize": true},
           "projection": {"type": "equalEarth"},
-
           "layer": [
             ...(graticuleObj ? [{
               "data": {"url": TOPO_URL, "format": {"type": "topojson", "feature": graticuleObj}},
@@ -154,14 +145,11 @@
               ],
               "mark": {
                 "type": "text",
-                "font": "Georgia, Times, serif",
+                "font": "Montserrat",
                 "fontSize": 11,
                 "baseline": "middle",
                 "align": "center",
-                "color": "black",
-                "stroke": "white",
-                "strokeWidth": 2.2,
-                "strokeJoin": "round"
+                "color": "black"
               },
               "encoding": {
                 "longitude": {"field": "lon", "type": "quantitative"},
