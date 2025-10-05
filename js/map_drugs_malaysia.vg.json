@@ -7,22 +7,17 @@
     "layer": [
       {
         "data": {
-          "url": "ne_10m.topojson",
-          "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+          "url": "https://raw.githubusercontent.com/lemonadee04/34003568_w9/refs/heads/main/js/ne_10m_admin_1_states_province.topojson",
+          "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
         },
         "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
       },
       {
         "data": {
-          "url": "mys_states.topojson",
-          "format": {"type": "topojson", "feature": "tmp_mys_admin1"}
+          "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/WorldMapWithGraticules.topojson",
+          "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
         },
-        "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
-      },
-      {
-        "name": "graticule",
-        "data": {"graticule": {"step": [10, 10]}},
-        "mark": {"type": "geoshape", "stroke": "#d0d7e2", "strokeWidth": 0.6, "fill": null}
+        "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
       },
       {
         "name": "states",
