@@ -7,103 +7,39 @@
     "layer": [
       {
         "data": {
-          "url": "https://raw.githubusercontent.com/lemonadee04/34003568_w9/refs/heads/main/js/ne_10m_admin_1_states_province.topojson",
+          "url": "MalaysiaMapWithGraticules.topojson",
           "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
         },
         "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
       },
       {
         "data": {
-          "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/WorldMapWithGraticules.topojson",
-          "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
+          "url": "MalaysiaMapWithGraticules.topojson",
+          "format": {"type": "topojson", "feature": "ne_10m_graticules_5"}
         },
         "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
       },
       {
-        "name": "states",
-        "data": {"url": "mys_states.topojson", "format": {"type": "topojson", "feature": "tmp_mys_admin1"}},
-        "transform": [
-          {"lookup": "properties.state", "from": {
-            "data": {"url": "../data/drug_by_state_2021.csv"},
-            "key": "state",
-            "fields": ["value"]
-          }},
-          {"lookup": "properties.state", "from": {
-            "data": {"url": "../data/population_state_2021.csv"},
-            "key": "state",
-            "fields": ["population"]
-          }},
-          {"calculate": "datum.value && datum.population ? datum.value / datum.population : null", "as": "rate_per_1k"}
-        ],
-        "mark": {"type": "geoshape"},
-        "encoding": {
-          "color": {
-            "field": "rate_per_1k",
-            "type": "quantitative",
-            "title": "Cases per 1k",
-            "scale": {"scheme": "blues"},
-            "legend": {"orient": "right"}
-          },
-          "tooltip": [
-            {"field": "properties.state", "title": "State"},
-            {"field": "addicts", "title": "Cases (abs)"},
-            {"field": "population", "title": "Population"},
-            {"field": "rate_per_1k", "title": "Per 1k", "format": ".1f"}
-          ]
-        }
-      }
-    ],
-    "config": {
-      "view": {"stroke": null},
-      "style": {"cell": {"stroke": null}},
-      "axis": {"labelFontSize": 11, "titleFontSize": 12}
-    }
-  }
-
-
-  ,
-      {
-        "name": "states",
         "data": {
-          "url": "mys_states.topojson",
-          "format": {"type": "topojson", "feature": "tmp_mys_admin1"}
+          "url": "../data/population_drug_by_state_2021.csv"
         },
-        "transform": [
-          {
-            "lookup": "properties.state",
-            "from": {
-              "data": {"url": "../data/drug_by_state_2021.csv"},
-              "key": "state",
-              "fields": ["value"]
-            }
-          },
-          {
-            "lookup": "properties.state",
-            "from": {
-              "data": {"url": "../data/population_state_2021.csv"},
-              "key": "state",
-              "fields": ["population"]
-            }
-          },
-          {
-            "calculate": "datum.value",
-            "as": "rate_per_1k"
-          }
-        ],
-        "mark": {"type": "geoshape"},
+        "mark": {"type": "circle", "tooltip": {"content": "data"}},
         "encoding": {
-          "color": {
-            "field": "rate_per_1k",
+          "longitude": {"field": "lon", "type": "quantitative"},
+          "latitude": {"field": "lat", "type": "quantitative"},
+          "size": {
+            "field": "drug",
             "type": "quantitative",
-            "title": "Cases per 1k",
-            "scale": {"scheme": "blues"},
-            "legend": {"orient": "right"}
+            "title": "Number of Drug Addicts",
+            "scale": {"domain": [48, 2196]}
           },
-          "tooltip": [
-            {"field": "properties.state", "title": "State"},
-            {"field": "addicts", "title": "Cases (abs)"},
-            {"field": "population", "title": "Population"},
-            {"field": "rate_per_1k", "title": "Per 1k", "format": ".1f"}
-          ]
+          "color": {
+            "field": "population",
+            "type": "quantitative",
+            "title": "Population ('000)",
+            "scale": {"scheme": "reds"}
+          }
         }
       }
+    ]
+}
