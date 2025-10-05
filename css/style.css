@@ -3,10 +3,12 @@ html, body {
   height: 100%;
   background: #f7f7f8;
   font-family: 'Montserrat', sans-serif;
+
+  padding: 40px;          
+  box-sizing: border-box;  
 }
 
 #vis {
   width: 100%;
-  height: 100vh;
-  margin: 0;
+  height: calc(100vh - 80px); 
 }
