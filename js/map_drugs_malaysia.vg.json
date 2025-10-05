@@ -21,14 +21,14 @@
       },
       {
         "data": {
-          "url": "https://raw.githubusercontent.com/lemonadee04/34003568_w9/refs/heads/main/data/population_drug_by_state_2021 copy.csv"
+          "url": "https://raw.githubusercontent.com/lemonadee04/34003568_w9/refs/heads/main/data/state_drug_population_2021_with_coords.csv"
         },
         "mark": {"type": "circle", "tooltip": {"content": "data"}},
         "encoding": {
           "longitude": {"field": "lon", "type": "quantitative"},
           "latitude": {"field": "lat", "type": "quantitative"},
           "size": {
-            "field": "drug",
+            "field": "drug_addicts",
             "type": "quantitative",
             "title": "Number of Drug Addicts",
             "scale": {"domain": [48, 2196]}
