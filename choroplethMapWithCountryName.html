@@ -47,7 +47,7 @@
             "as": "state_key"
         },
         {
-          "lookup": "properties.name",
+          "lookup": "state_key",
           "from": {
             "data": {
               "url": "https://raw.githubusercontent.com/lemonadee04/34003568_w9/refs/heads/main/data/state_drug_population_2021.csv"
@@ -73,7 +73,7 @@
           }
         },
         "tooltip": [
-          {"field": "properties.name", "type": "nominal", "title": "state"},
+          {"field": "state_key", "type": "nominal", "title": "State"},
           {"field": "drug_addicts", "type": "quantitative"},
           {
             "field": "Drug addicts per 100,000 population",

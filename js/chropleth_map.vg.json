@@ -43,7 +43,7 @@
         "scale": {"scheme": "reds"}
         },
         "tooltip": [
-          {"field": "properties.name", "type": "nominal", "title": "State"},
+          {"field": "state_key", "type": "nominal", "title": "State"},
           {"field": "drug_addicts", "type": "quantitative", "title": "Drug addicts"},
           {"field": "population", "type": "quantitative", "title": "Population ('000)"},
           {"field": "rate_per_100k", "type": "quantitative", "title": "Drug addicts Per 100,000", "format": ".2f"}
