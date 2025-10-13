@@ -16,9 +16,9 @@
   <div id="vis"></div>
 
   <script>
-    const TOPO_URL = "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/js/MalaysiaMapWithGraticules.topojson";
-    const DATA_URL = "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/state_drug_population_2021.csv";
-    const CENTROID_URL = "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/malaysia_state_centroids.csv";
+    const TOPO_URL = "./js/MalaysiaMapWithGraticules.topojson";
+    const DATA_URL = "./data/state_drug_population_2021.csv";
+    const CENTROID_URL = "./data/malaysia_state_centroids.csv";
 
     fetch(TOPO_URL)
       .then(r => r.json())
@@ -96,11 +96,8 @@
                     "title": "Drug addicts per 100,000",
                     "scale": {
                       "type": "threshold",
-                      "domain": [18, 50, 82, 114, 146, 174],
-                      "range": [
-                        "#fff5eb","#fee6ce","#fdd0a2","#fdae6b",
-                        "#fd8d3c","#f16913","#d94801","#a63603","#7f2704"
-                      ]
+                      "domain": [18, 50, 82, 114, 146],
+                      "range": ["#feedde", "#fdbe85", "#fd8d3c", "#e6550d", "#a63603"]
                     },
                     "legend": {"orient": "bottom", "direction": "horizontal"}
                   },
