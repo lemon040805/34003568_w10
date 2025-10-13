@@ -8,6 +8,9 @@
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <div id="vis"></div>
@@ -20,18 +23,45 @@
     fetch(TOPO_URL)
       .then(r => r.json())
       .then(topo => {
-        const objs = topo && topo.objects ? Object.keys(topo.objects) : [];
-        if (!objs.length) throw new Error("TopoJSON has no 'objects'.");
-        const adminObj = objs[0]; // keep it simple: use the first object
+        const objects = topo && topo.objects ? Object.keys(topo.objects) : [];
+        if (!objects.length) throw new Error("TopoJSON has no 'objects'.");
+        const adminObj = objects.find(k => /admin|state|province/i.test(k)) || objects[0];
+        const graticuleObj = objects.find(k => /graticule/i.test(k)) || null;
 
         const spec = {
           "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-          "title": "Drug Addiction in Malaysia by State (per 100,000, 2021)",
+          "config": {
+            "title": {
+              "font": "Marker Felt, Comic Sans MS, sans-serif",
+              "fontSize": 32,
+              "fontWeight": 600,
+              "anchor": "middle",
+              "color": "#222"
+            },
+            "legend": {
+              "orient": "bottom",
+              "direction": "horizontal",
+              "titleAnchor": "middle",
+              "labelColor": "black",
+              "titleColor": "black",
+              "labelFontSize": 12,
+              "titleFontSize": 13,
+              "symbolSize": 80
+            },
+            "view": {"stroke": null}
+          },
+          "title": "Drug Addiction in Malaysia by State (per 100,000 population, 2021)",
           "width": "container",
           "height": "container",
-          "autosize": {"type": "fit", "contains": "padding"},
+          "autosize": {"type": "fit", "contains": "padding", "resize": true},
+          "padding": {"top": 60, "right": 80, "bottom": 80, "left": 80},
           "projection": {"type": "equalEarth"},
           "layer": [
+            ...(graticuleObj ? [{
+              "data": {"url": TOPO_URL, "format": {"type": "topojson", "feature": graticuleObj}},
+              "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
+            }] : []),
+
             {
               "data": {"url": TOPO_URL, "format": {"type": "topojson", "feature": adminObj}},
               "transform": [
@@ -54,10 +84,7 @@
                     "fields": ["drug_addicts", "population"]
                   }
                 },
-                {
-                  "calculate": "isValid(datum.population) && isValid(datum.drug_addicts) ? (datum.drug_addicts / datum.population * 100) : null",
-                  "as": "rate_per_100k"
-                }
+                {"calculate": "isValid(datum.population) && isValid(datum.drug_addicts) ? (datum.drug_addicts / datum.population * 100) : null", "as": "rate_per_100k"}
               ],
               "mark": {"type": "geoshape", "stroke": "white"},
               "encoding": {
@@ -66,12 +93,13 @@
                     "test": "isValid(datum.rate_per_100k)",
                     "field": "rate_per_100k",
                     "type": "quantitative",
-                    "title": "Per 100,000",
+                    "title": "Drug addicts per 100,000",
                     "scale": {
                       "type": "threshold",
                       "domain": [18, 50, 82, 114, 146],
                       "range": ["#fef0d9", "#fdd49e", "#fdbb84", "#fc8d59", "#e34a33", "#b30000"]
-                    }
+                    },
+                    "legend": {"orient": "bottom", "direction": "horizontal"}
                   },
                   "value": "#e5e5e5"
                 },
@@ -83,6 +111,7 @@
                 ]
               }
             },
+
             {
               "data": {"url": TOPO_URL, "format": {"type": "topojson", "feature": adminObj}},
               "transform": [
@@ -107,7 +136,13 @@
                 },
                 {"filter": "isValid(datum.lon) && isValid(datum.lat)"}
               ],
-              "mark": {"type": "text", "fontSize": 11, "baseline": "middle", "align": "center", "color": "black"},
+              "mark": {
+                "type": "text",
+                "fontSize": 11,
+                "baseline": "middle",
+                "align": "center",
+                "color": "black"
+              },
               "encoding": {
                 "longitude": {"field": "lon", "type": "quantitative"},
                 "latitude": {"field": "lat", "type": "quantitative"},
@@ -117,11 +152,19 @@
           ]
         };
 
-        vegaEmbed("#vis", spec, {mode: "vega-lite", actions: false});
+        vegaEmbed("#vis", spec, {mode: "vega-lite", actions: false, renderer: "canvas"})
+          .then(res => {
+            res.view.resize();
+            window.addEventListener("resize", () => res.view.resize());
+          })
+          .catch(err => {
+            console.error(err);
+            alert(err.message || err);
+          });
       })
       .catch(err => {
-        console.error(err);
-        alert(err.message || err);
+        console.error("Failed to load TopoJSON:", err);
+        alert("Failed to load TopoJSON: " + (err.message || err));
       });
   </script>
 </body>
