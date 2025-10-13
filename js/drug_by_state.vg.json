@@ -23,7 +23,7 @@
   "layer": [
     {
       "data": {
-        "url": "./js/MalaysiaMapWithGraticules.topojson",
+        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/js/MalaysiaMapWithGraticules.topojson",
         "format": {"type": "topojson", "feature": "admin"}
       },
       "transform": [
@@ -39,7 +39,7 @@
           "lookup": "state_key",
           "from": {
             "data": {
-              "url": "./data/state_drug_population_2021.csv",
+              "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/state_drug_population_2021.csv",
               "format": {
                 "type": "csv",
                 "parse": {"drug_addicts": "number", "population": "number"}
@@ -79,16 +79,16 @@
         ]
       }
     },
-    // {
-    //   "data": {
-    //     "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/7_others/oceans.topojson",
-    //     "format": {"type": "topojson", "feature": "oceans"}
-    //   },
-    //   "mark": {"type": "geoshape", "fill": "skyblue"}
-    // },
     {
       "data": {
-        "url": "./js/MalaysiaMapWithGraticules.topojson",
+        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/7_others/oceans.topojson",
+        "format": {"type": "topojson", "feature": "oceans"}
+      },
+      "mark": {"type": "geoshape", "fill": "skyblue"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/js/MalaysiaMapWithGraticules.topojson",
         "format": {"type": "topojson", "feature": "admin"}
       },
       "transform": [
@@ -104,7 +104,7 @@
           "lookup": "state_key",
           "from": {
             "data": {
-              "url": "./data/malaysia_state_centroids.csv",
+              "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/malaysia_state_centroids.csv",
               "format": {"type": "csv", "parse": {"lat": "number", "lon": "number"}}
             },
             "key": "state",
