@@ -24,7 +24,7 @@
     {
       "data": {
         "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/js/MalaysiaMapWithGraticules.topojson",
-        "format": {"type": "topojson", "feature": "admin"}
+        "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
       },
       "transform": [
         {
@@ -54,7 +54,7 @@
           "as": "rate_per_100k"
         }
       ],
-      "mark": {"type": "geoshape", "stroke": "black"},
+      "mark": {"type": "geoshape", "stroke": "white"},
       "encoding": {
         "color": {
           "condition": {
@@ -89,7 +89,7 @@
     {
       "data": {
         "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/js/MalaysiaMapWithGraticules.topojson",
-        "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
+        "format": {"type": "topojson", "feature": "ne_10m_graticules_5"}
       },
       "transform": [
         {
