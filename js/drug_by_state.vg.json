@@ -1,0 +1,123 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {
+    "title": {
+      "font": "Marker Felt, Comic Sans MS, sans-serif",
+      "fontSize": 32,
+      "fontWeight": 600,
+      "anchor": "middle",
+      "color": "#222"
+    },
+    "legend": {
+      "orient": "bottom",
+      "direction": "horizontal"
+    },
+    "view": {"stroke": null}
+  },
+  "title": "Drug Addiction in Malaysia by State (per 100,000 population, 2021)",
+  "width": "container",
+  "height": "container",
+  "autosize": {"type": "fit", "contains": "padding", "resize": true},
+  "padding": {"top": 60, "right": 80, "bottom": 80, "left": 80},
+  "projection": {"type": "equalEarth"},
+  "layer": [
+    {
+      "data": {
+        "url": "./js/MalaysiaMapWithGraticules.topojson",
+        "format": {"type": "topojson", "feature": "admin"}
+      },
+      "transform": [
+        {
+          "calculate":
+            "datum.properties.name === 'Kuala Lumpur' ? 'W.P. Kuala Lumpur' :" +
+            "datum.properties.name === 'Labuan' ? 'W.P. Labuan' :" +
+            "datum.properties.name === 'Putrajaya' ? 'W.P. Putrajaya' :" +
+            "datum.properties.name",
+          "as": "state_key"
+        },
+        {
+          "lookup": "state_key",
+          "from": {
+            "data": {
+              "url": "./data/state_drug_population_2021.csv",
+              "format": {
+                "type": "csv",
+                "parse": {"drug_addicts": "number", "population": "number"}
+              }
+            },
+            "key": "state",
+            "fields": ["drug_addicts", "population"]
+          }
+        },
+        {
+          "calculate": "isValid(datum.population) && isValid(datum.drug_addicts) ? (datum.drug_addicts / datum.population * 100) : null",
+          "as": "rate_per_100k"
+        }
+      ],
+      "mark": {"type": "geoshape", "stroke": "white"},
+      "encoding": {
+        "color": {
+          "condition": {
+            "test": "isValid(datum.rate_per_100k)",
+            "field": "rate_per_100k",
+            "type": "quantitative",
+            "title": "Drug addicts per 100,000",
+            "scale": {
+              "type": "threshold",
+              "domain": [18, 50, 82, 114, 146],
+              "range": ["#fef0d9", "#fdd49e", "#fdbb84", "#fc8d59", "#e34a33", "#b30000"]
+            },
+            "legend": {"orient": "bottom", "direction": "horizontal"}
+          },
+          "value": "#e5e5e5"
+        },
+        "tooltip": [
+          {"field": "state_key", "title": "State"},
+          {"field": "drug_addicts", "title": "Drug addicts"},
+          {"field": "population", "title": "Population ('000)"},
+          {"field": "rate_per_100k", "title": "Per 100,000", "format": ".2f"}
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "./js/MalaysiaMapWithGraticules.topojson",
+        "format": {"type": "topojson", "feature": "admin"}
+      },
+      "transform": [
+        {
+          "calculate":
+            "datum.properties.name === 'Kuala Lumpur' ? 'W.P. Kuala Lumpur' :" +
+            "datum.properties.name === 'Labuan' ? 'W.P. Labuan' :" +
+            "datum.properties.name === 'Putrajaya' ? 'W.P. Putrajaya' :" +
+            "datum.properties.name",
+          "as": "state_key"
+        },
+        {
+          "lookup": "state_key",
+          "from": {
+            "data": {
+              "url": "./data/malaysia_state_centroids.csv",
+              "format": {"type": "csv", "parse": {"lat": "number", "lon": "number"}}
+            },
+            "key": "state",
+            "fields": ["lat", "lon"]
+          }
+        },
+        {"filter": "isValid(datum.lon) && isValid(datum.lat)"}
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "baseline": "middle",
+        "align": "center",
+        "color": "black"
+      },
+      "encoding": {
+        "longitude": {"field": "lon", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "text": {"field": "state_key", "type": "nominal"}
+      }
+    }
+  ]
+}
