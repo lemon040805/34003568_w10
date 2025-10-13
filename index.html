@@ -51,10 +51,6 @@
           "padding": {"top": 60, "right": 80, "bottom": 80, "left": 80},
           "projection": {"type": "equalEarth"},
           "layer": [
-            ...(graticuleObj ? [{
-              "data": {"url": TOPO_URL, "format": {"type": "topojson", "feature": graticuleObj}},
-              "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
-            }] : []),
 
             {
               "data": {"url": TOPO_URL, "format": {"type": "topojson", "feature": adminObj}},
