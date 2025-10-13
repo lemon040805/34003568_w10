@@ -16,7 +16,7 @@
   },
   "title": "Drug Addiction in Malaysia by State (per 100,000 population, 2021)",
   "width": "container",
-  "height": "container",
+  "height": 560,
   "autosize": {"type": "fit", "contains": "padding", "resize": true},
   "padding": {"top": 60, "right": 80, "bottom": 80, "left": 80},
   "projection": {"type": "equalEarth"},
@@ -79,13 +79,13 @@
         ]
       }
     },
-    // {
-    //   "data": {
-    //     "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/7_others/oceans.topojson",
-    //     "format": {"type": "topojson", "feature": "oceans"}
-    //   },
-    //   "mark": {"type": "geoshape", "fill": "skyblue"}
-    // },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/7_others/oceans.topojson",
+        "format": {"type": "topojson", "feature": "oceans"}
+      },
+      "mark": {"type": "geoshape", "fill": "skyblue"}
+    },
     {
       "data": {
         "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/js/MalaysiaMapWithGraticules.topojson",
