@@ -142,19 +142,11 @@
           ]
         };
 
-        vegaEmbed("#vis", spec, {mode: "vega-lite", actions: false, renderer: "canvas"})
-          .then(res => {
-            res.view.resize();
-            window.addEventListener("resize", () => res.view.resize());
+        vegaEmbed("#vis", spec, {mode: "vega-lite", actions: false });
           })
           .catch(err => {
             console.error(err);
             alert(err.message || err);
-          });
-      })
-      .catch(err => {
-        console.error("Failed to load TopoJSON:", err);
-        alert("Failed to load TopoJSON: " + (err.message || err));
       });
   </script>
 </body>
