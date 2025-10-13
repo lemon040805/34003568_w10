@@ -23,10 +23,9 @@
     fetch(TOPO_URL)
       .then(r => r.json())
       .then(topo => {
-        const objects = topo && topo.objects ? Object.keys(topo.objects) : [];
-        if (!objects.length) throw new Error("TopoJSON has no 'objects'.");
-        const adminObj = objects.find(k => /admin|state|province/i.test(k)) || objects[0];
-        const graticuleObj = objects.find(k => /graticule/i.test(k)) || null;
+        const objs = topo && topo.objects ? Object.keys(topo.objects) : [];
+        if (!objs.length) throw new Error("TopoJSON has no 'objects'.");
+        const adminObj = objs[0]; 
 
         const spec = {
           "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
