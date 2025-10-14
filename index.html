@@ -16,7 +16,13 @@
   <div id="vis"></div>
 
   <script>
-    vegaEmbed('#vis', 'https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/js/drug_by_state.vg.json', {mode: 'vega-lite', actions: false});
-  </script>
+  vegaEmbed('#vis',
+    'https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/drug_by_state.vg.json',
+    {mode: 'vega-lite', actions: false}
+  ).catch(err => {
+    console.error('Vega embed error:', err);
+    alert('Viz error: ' + (err?.message || err));
+  });
+</script>
 </body>
 </html>

@@ -8,10 +8,7 @@
       "anchor": "middle",
       "color": "#222"
     },
-    "legend": {
-      "orient": "bottom",
-      "direction": "horizontal"
-    },
+    "legend": {"orient": "bottom", "direction": "horizontal"},
     "view": {"stroke": null}
   },
   "title": "Drug Addiction in Malaysia by State (per 100,000 population, 2021)",
@@ -30,8 +27,8 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/js/MalaysiaMapWithGraticules.topojson",
-        "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
+        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/MalaysiaMapWithGraticules.topojson",
+        "format": {"type": "topojson", "feature": "admin"}   // <= replace with your exact states key
       },
       "transform": [
         {
@@ -46,11 +43,8 @@
           "lookup": "state_key",
           "from": {
             "data": {
-              "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/state_drug_population_2021.csv",
-              "format": {
-                "type": "csv",
-                "parse": {"drug_addicts": "number", "population": "number"}
-              }
+              "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/data/state_drug_population_2021.csv",
+              "format": {"type": "csv", "parse": {"drug_addicts": "number", "population": "number"}}
             },
             "key": "state",
             "fields": ["drug_addicts", "population"]
@@ -88,8 +82,8 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/js/MalaysiaMapWithGraticules.topojson",
-        "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
+        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/MalaysiaMapWithGraticules.topojson",
+        "format": {"type": "topojson", "feature": "admin"}   // <= same states key again for labels
       },
       "transform": [
         {
@@ -104,7 +98,7 @@
           "lookup": "state_key",
           "from": {
             "data": {
-              "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/malaysia_state_centroids.csv",
+              "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/data/malaysia_state_centroids.csv",
               "format": {"type": "csv", "parse": {"lat": "number", "lon": "number"}}
             },
             "key": "state",
@@ -113,13 +107,7 @@
         },
         {"filter": "isValid(datum.lon) && isValid(datum.lat)"}
       ],
-      "mark": {
-        "type": "text",
-        "fontSize": 11,
-        "baseline": "middle",
-        "align": "center",
-        "color": "black"
-      },
+      "mark": {"type": "text", "fontSize": 11, "baseline": "middle", "align": "center", "color": "black"},
       "encoding": {
         "longitude": {"field": "lon", "type": "quantitative"},
         "latitude": {"field": "lat", "type": "quantitative"},
