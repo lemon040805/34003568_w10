@@ -5,16 +5,6 @@
   "height": 600,
   "autosize": {"type": "fit", "resize": true},
   "projection": {"type": "equalEarth"},
-
-  "params": [
-    {
-      "name": "time_brush",
-      "select": {"type": "point", "fields": ["year"]},
-      "bind": {"input": "range", "min": 2000, "max": 2021, "step": 1},
-      "value": {"year": 2021}
-    }
-  ],
-
   "layer": [
     {
       "data": {
