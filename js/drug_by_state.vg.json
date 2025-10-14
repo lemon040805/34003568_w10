@@ -28,7 +28,7 @@
     {
       "data": {
         "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/MalaysiaMapWithGraticules.topojson",
-        "format": {"type": "topojson", "feature": "admin"}   // <= replace with your exact states key
+        "format": {"type": "topojson", "feature": "admin"}   
       },
       "transform": [
         {
@@ -83,7 +83,7 @@
     {
       "data": {
         "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/MalaysiaMapWithGraticules.topojson",
-        "format": {"type": "topojson", "feature": "admin"}   // <= same states key again for labels
+        "format": {"type": "topojson", "feature": "admin"} 
       },
       "transform": [
         {

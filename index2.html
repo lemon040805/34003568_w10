@@ -19,15 +19,18 @@
     const TOPO_URL = "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/js/MalaysiaMapWithGraticules.topojson";
     const DATA_URL = "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/state_drug_population_2021.csv";
     const CENTROID_URL = "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/malaysia_state_centroids.csv";
-
+    let adminObj;
+    let graticuleObj;
     fetch(TOPO_URL)
       .then(r => r.json())
       .then(topo => {
         const objects = topo && topo.objects ? Object.keys(topo.objects) : [];
         if (!objects.length) throw new Error("TopoJSON has no 'objects'.");
-        const adminObj = objects.find(k => /admin|state|province/i.test(k)) || objects[0];
-        const graticuleObj = objects.find(k => /graticule/i.test(k)) || null;
+        adminObj = objects.find(k => /admin|state|province/i.test(k)) || objects[0];
+        graticuleObj = objects.find(k => /graticule/i.test(k)) || null;
 
+        console.log("adminObj:", adminObj);
+        console.log("graticuleObj:", graticuleObj);
         const spec = {
           "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
           "config": {
