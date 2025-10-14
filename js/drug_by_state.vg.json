@@ -5,6 +5,16 @@
   "height": 600,
   "autosize": {"type": "fit", "resize": true},
   "projection": {"type": "equalEarth"},
+
+  "params": [
+    {
+      "name": "time_brush",
+      "select": {"type": "point", "fields": ["year"]},
+      "bind": {"input": "range", "min": 2000, "max": 2021, "step": 1},
+      "value": {"year": 2021}
+    }
+  ],
+
   "layer": [
     {
       "data": {
@@ -15,15 +25,18 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/MalaysiaMapWithGraticules.topojson",
+        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/js/MalaysiaMapWithGraticules.topojson",
         "format": {"type": "topojson", "feature": "ne_10m_graticules_5"}
       },
       "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/data/state_drug_population_by_year.csv",
-        "format": {"type": "csv", "parse": {"year": "number", "drug_addicts": "number", "population": "number"}}
+        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/state_drug_population_by_year.csv",
+        "format": {
+          "type": "csv",
+          "parse": {"year": "number", "drug_addicts": "number", "population": "number"}
+        }
       },
       "transform": [
         {"filter": {"param": "time_brush"}},
@@ -35,7 +48,7 @@
           "lookup": "state_match",
           "from": {
             "data": {
-              "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/MalaysiaMapWithGraticules.topojson",
+              "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/js/MalaysiaMapWithGraticules.topojson",
               "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
             },
             "key": "properties.name",
@@ -74,7 +87,7 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/MalaysiaMapWithGraticules.topojson",
+        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/js/MalaysiaMapWithGraticules.topojson",
         "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
       },
       "transform": [
@@ -83,7 +96,7 @@
           "lookup": "properties.name",
           "from": {
             "data": {
-              "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/data/malaysia_state_centroids.csv",
+              "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/malaysia_state_centroids.csv",
               "format": {"type": "csv", "parse": {"lat": "number", "lon": "number"}}
             },
             "key": "state",
