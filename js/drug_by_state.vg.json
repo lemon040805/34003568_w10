@@ -47,13 +47,9 @@
         "format": { "type": "topojson", "feature": "ne_10m_admin_1_states_provinces" }
       },
       "transform": [
-        { "filter": "toString(datum.properties.adm0_a3) == 'MYS'" },
+        { "filter": "datum.properties.adm0_a3 == 'MYS'" },
         {
-          "calculate":
-            "datum.properties.name === 'Kuala Lumpur' ? 'W.P. Kuala Lumpur' :" +
-            "datum.properties.name === 'Labuan' ? 'W.P. Labuan' :" +
-            "datum.properties.name === 'Putrajaya' ? 'W.P. Putrajaya' :" +
-            "datum.properties.name",
+          "calculate": "datum.properties.name === 'Kuala Lumpur' ? 'W.P. Kuala Lumpur' : datum.properties.name === 'Labuan' ? 'W.P. Labuan' : datum.properties.name === 'Putrajaya' ? 'W.P. Putrajaya' : datum.properties.name",
           "as": "state_key"
         },
         {
@@ -99,13 +95,9 @@
         "format": { "type": "topojson", "feature": "ne_10m_admin_1_states_provinces" }
       },
       "transform": [
-        { "filter": "toString(datum.properties.adm0_a3) == 'MYS'" },
+        { "filter": "datum.properties.adm0_a3 == 'MYS'" },
         {
-          "calculate":
-            "datum.properties.name === 'Kuala Lumpur' ? 'W.P. Kuala Lumpur' :" +
-            "datum.properties.name === 'Labuan' ? 'W.P. Labuan' :" +
-            "datum.properties.name === 'Putrajaya' ? 'W.P. Putrajaya' :" +
-            "datum.properties.name",
+          "calculate": "datum.properties.name === 'Kuala Lumpur' ? 'W.P. Kuala Lumpur' : datum.properties.name === 'Labuan' ? 'W.P. Labuan' : datum.properties.name === 'Putrajaya' ? 'W.P. Putrajaya' : datum.properties.name",
           "as": "state_key"
         },
         {
