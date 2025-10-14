@@ -1,170 +1,110 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "vconcat": [
+  "title": "Drug Addiction in Malaysia by State (per 100,000 population, 2021)",
+  "width": "container",
+  "height": 800,
+  "autosize": { "type": "fit", "resize": true },
+  "projection": { "type": "equalEarth" },
+  "layer": [
     {
-      "title": "Drug Addiction in Malaysia by State (rate per 100 population, brushed years)",
-      "width": "container",
-      "height": 800,
-      "autosize": { "type": "fit", "resize": true },
-      "projection": { "type": "equalEarth" },
-      "layer": [
-        {
-          "data": {
-            "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/ne_10m_ocean.topojson",
-            "format": { "type": "topojson", "feature": "ne_10m_ocean" }
-          },
-          "mark": { "type": "geoshape", "fill": "skyblue" }
-        },
-        {
-          "data": {
-            "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/js/MalaysiaMapWithGraticules.topojson",
-            "format": { "type": "topojson", "feature": "ne_10m_graticules_5" }
-          },
-          "mark": { "type": "geoshape", "fill": null, "stroke": "lightgray" }
-        },
-        {
-          "data": {
-            "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/state_drug_population_by_year.csv",
-            "format": {
-              "type": "csv",
-              "parse": { "year": "number", "drug_addicts": "number", "population": "number" }
-            }
-          },
-          "transform": [
-            { "filter": { "param": "time_brush" } },
-            {
-              "calculate": "datum.state === 'W.P. Kuala Lumpur' ? 'Kuala Lumpur' : datum.state === 'W.P. Labuan' ? 'Labuan' : datum.state === 'W.P. Putrajaya' ? 'Putrajaya' : datum.state",
-              "as": "state_match"
-            },
-            {
-              "aggregate": [
-                { "op": "sum", "field": "drug_addicts", "as": "sum_drug_addicts" },
-                { "op": "sum", "field": "population", "as": "sum_population_thousands" }
-              ],
-              "groupby": ["state_match"]
-            },
-            {
-              "calculate": "datum.sum_population_thousands > 0 ? (datum.sum_drug_addicts / (datum.sum_population_thousands * 1000)) * 100 : null",
-              "as": "rate_per_100"
-            },
-            {
-              "lookup": "state_match",
-              "from": {
-                "data": {
-                  "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/js/MalaysiaMapWithGraticules.topojson",
-                  "format": { "type": "topojson", "feature": "ne_10m_admin_1_states_provinces" }
-                },
-                "key": "properties.name",
-                "fields": ["type", "properties", "geometry"]
-              },
-              "as": "geo"
-            },
-            { "filter": "datum.geo && datum.geo.properties && datum.geo.properties.adm0_a3 == 'MYS'" }
-          ],
-          "mark": { "type": "geoshape", "stroke": "white", "strokeWidth": 0.5 },
-          "encoding": {
-            "shape": { "field": "geo", "type": "geojson" },
-            "color": {
-              "field": "rate_per_100",
-              "type": "quantitative",
-              "title": "Drug addicts per 100 people",
-              "scale": {
-                "type": "threshold",
-                "domain": [0.5, 1, 1.5, 2, 2.5],
-                "range": ["#fef0d9", "#fdd49e", "#fdbb84", "#fc8d59", "#e34a33", "#b30000"]
-              },
-              "legend": { "orient": "bottom", "direction": "horizontal" }
-            },
-            "tooltip": [
-              { "field": "state_match", "title": "State", "type": "nominal" },
-              { "field": "rate_per_100", "title": "Per 100", "type": "quantitative", "format": ".2f" },
-              { "field": "sum_drug_addicts", "title": "Drug addicts (sum)", "type": "quantitative" },
-              {
-                "field": "sum_population_thousands",
-                "title": "Population (sum, '000)",
-                "type": "quantitative",
-                "format": ","
-              }
-            ]
-          }
-        },
-        {
-          "data": {
-            "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/js/MalaysiaMapWithGraticules.topojson",
-            "format": { "type": "topojson", "feature": "ne_10m_admin_1_states_provinces" }
-          },
-          "transform": [
-            { "filter": "datum.properties.adm0_a3 == 'MYS'" },
-            {
-              "lookup": "properties.name",
-              "from": {
-                "data": {
-                  "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/malaysia_state_centroids.csv",
-                  "format": { "type": "csv", "parse": { "lat": "number", "lon": "number" } }
-                },
-                "key": "state",
-                "fields": ["lat", "lon"]
-              }
-            },
-            { "filter": "isValid(datum.lon) && isValid(datum.lat)" },
-            {
-              "calculate": "datum.properties.name === 'Kuala Lumpur' ? 'W.P. Kuala Lumpur' : datum.properties.name === 'Labuan' ? 'W.P. Labuan' : datum.properties.name === 'Putrajaya' ? 'W.P. Putrajaya' : datum.properties.name",
-              "as": "label_state"
-            }
-          ],
-          "mark": {
-            "type": "text",
-            "fontSize": 11,
-            "baseline": "middle",
-            "align": "center",
-            "color": "black"
-          },
-          "encoding": {
-            "longitude": { "field": "lon", "type": "quantitative" },
-            "latitude": { "field": "lat", "type": "quantitative" },
-            "text": { "field": "label_state", "type": "nominal" }
-          }
-        }
-      ]
+      "data": {
+        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/ne_10m_ocean.topojson",
+        "format": { "type": "topojson", "feature": "ne_10m_ocean" }
+      },
+      "mark": { "type": "geoshape", "fill": "skyblue" }
     },
     {
-      "width": "container",
-      "height": 80,
-      "title": "Drag to filter by year range",
       "data": {
-        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/state_drug_population_by_year.csv",
-        "format": {
-          "type": "csv",
-          "parse": { "year": "number", "drug_addicts": "number", "population": "number" }
-        }
+        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/MalaysiaMapWithGraticules.topojson",
+        "format": { "type": "topojson", "feature": "ne_10m_graticules_5" }
       },
-      "mark": "line",
-      "params": [
-        { "name": "time_brush", "select": { "type": "interval", "encodings": ["x"] } }
-      ],
+      "mark": { "type": "geoshape", "fill": null, "stroke": "lightgray" }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/MalaysiaMapWithGraticules.topojson",
+        "format": { "type": "topojson", "feature": "ne_10m_admin_1_states_provinces" }
+      },
+      "mark": { "type": "geoshape", "fill": "#e5e5e5", "stroke": "white", "strokeWidth": 0.5 }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/MalaysiaMapWithGraticules.topojson",
+        "format": { "type": "topojson", "feature": "ne_10m_admin_1_states_provinces" }
+      },
       "transform": [
+        { "filter": "datum.properties.adm0_a3 == 'MYS'" },
         {
-          "aggregate": [
-            { "op": "sum", "field": "drug_addicts", "as": "sum_drug_addicts" },
-            { "op": "sum", "field": "population", "as": "sum_population_thousands" }
-          ],
-          "groupby": ["year"]
+          "calculate": "datum.properties.name === 'Kuala Lumpur' ? 'W.P. Kuala Lumpur' : datum.properties.name === 'Labuan' ? 'W.P. Labuan' : datum.properties.name === 'Putrajaya' ? 'W.P. Putrajaya' : datum.properties.name",
+          "as": "state_key"
         },
         {
-          "calculate": "datum.sum_population_thousands > 0 ? (datum.sum_drug_addicts / (datum.sum_population_thousands * 1000)) * 100 : null",
-          "as": "rate_per_100"
+          "lookup": "state_key",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/data/state_drug_population_2021.csv",
+              "format": { "type": "csv", "parse": { "drug_addicts": "number", "population": "number" } }
+            },
+            "key": "state",
+            "fields": [ "drug_addicts", "population" ]
+          }
+        },
+        {
+          "calculate": "isValid(datum.population) && isValid(datum.drug_addicts) ? (datum.drug_addicts / datum.population * 100) : null",
+          "as": "rate_per_100k"
         }
       ],
+      "mark": { "type": "geoshape", "stroke": "white" },
       "encoding": {
-        "x": { "field": "year", "type": "quantitative", "axis": { "title": "" } },
-        "y": {
-          "field": "rate_per_100",
+        "color": {
+          "field": "rate_per_100k",
           "type": "quantitative",
-          "title": "Rate per 100",
-          "axis": { "grid": false, "tickCount": 3 }
-        }
+          "title": "Drug addicts per 100,000",
+          "scale": {
+            "type": "threshold",
+            "domain": [ 18, 50, 82, 114, 146 ],
+            "range": [ "#fef0d9", "#fdd49e", "#fdbb84", "#fc8d59", "#e34a33", "#b30000" ]
+          },
+          "legend": { "orient": "bottom", "direction": "horizontal" }
+        },
+        "tooltip": [
+          { "field": "state_key", "title": "State", "type": "nominal" },
+          { "field": "rate_per_100k", "title": "Per 100,000", "type": "quantitative", "format": ".2f" },
+          { "field": "drug_addicts", "title": "Drug addicts", "type": "quantitative" },
+          { "field": "population", "title": "Population ('000)", "type": "quantitative" }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/MalaysiaMapWithGraticules.topojson",
+        "format": { "type": "topojson", "feature": "ne_10m_admin_1_states_provinces" }
+      },
+      "transform": [
+        { "filter": "datum.properties.adm0_a3 == 'MYS'" },
+        {
+          "calculate": "datum.properties.name === 'Kuala Lumpur' ? 'W.P. Kuala Lumpur' : datum.properties.name === 'Labuan' ? 'W.P. Labuan' : datum.properties.name === 'Putrajaya' ? 'W.P. Putrajaya' : datum.properties.name",
+          "as": "state_key"
+        },
+        {
+          "lookup": "state_key",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/data/malaysia_state_centroids.csv",
+              "format": { "type": "csv", "parse": { "lat": "number", "lon": "number" } }
+            },
+            "key": "state",
+            "fields": [ "lat", "lon" ]
+          }
+        },
+        { "filter": "isValid(datum.lon) && isValid(datum.lat)" }
+      ],
+      "mark": { "type": "text", "fontSize": 11, "baseline": "middle", "align": "center", "color": "black" },
+      "encoding": {
+        "longitude": { "field": "lon", "type": "quantitative" },
+        "latitude": { "field": "lat", "type": "quantitative" },
+        "text": { "field": "state_key", "type": "nominal" }
       }
     }
-  ],
-  "config": { "title": { "font": "sans-serif", "fontSize": 14 }, "view": { "stroke": null } }
+  ]
 }
