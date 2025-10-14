@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "vconcat": [
     {
-      "title": "Drug Addiction in Malaysia by State (per 100 population, brushed years)",
+      "title": "Drug Addiction in Malaysia by State (rate per 100 population, brushed years)",
       "width": "container",
       "height": 800,
       "autosize": { "type": "fit", "resize": true },
@@ -11,9 +11,9 @@
         {
           "data": {
             "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/ne_10m_ocean.topojson",
-            "format": {"type": "topojson", "feature": "ne_10m_ocean"}
+            "format": { "type": "topojson", "feature": "ne_10m_ocean" }
           },
-          "mark": {"type": "geoshape", "fill": "skyblue"}
+          "mark": { "type": "geoshape", "fill": "skyblue" }
         },
         {
           "data": {
@@ -25,7 +25,10 @@
         {
           "data": {
             "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/state_drug_population_by_year.csv",
-            "format": { "type": "csv", "parse": { "year": "number", "drug_addicts": "number", "population": "number" } }
+            "format": {
+              "type": "csv",
+              "parse": { "year": "number", "drug_addicts": "number", "population": "number" }
+            }
           },
           "transform": [
             { "filter": { "param": "time_brush" } },
@@ -35,10 +38,14 @@
             },
             {
               "aggregate": [
-                { "op": "sum", "field": "drug_addicts", "as": "drug_addicts" },
-                { "op": "sum", "field": "population", "as": "population" }
+                { "op": "sum", "field": "drug_addicts", "as": "sum_drug_addicts" },
+                { "op": "sum", "field": "population", "as": "sum_population_thousands" }
               ],
               "groupby": ["state_match"]
+            },
+            {
+              "calculate": "datum.sum_population_thousands > 0 ? (datum.sum_drug_addicts / (datum.sum_population_thousands * 1000)) * 100 : null",
+              "as": "rate_per_100"
             },
             {
               "lookup": "state_match",
@@ -52,11 +59,7 @@
               },
               "as": "geo"
             },
-            { "filter": "datum.geo && datum.geo.properties && datum.geo.properties.adm0_a3 == 'MYS'" },
-            {
-              "calculate": "isValid(datum.population) && isValid(datum.drug_addicts) ? (datum.drug_addicts / datum.population) * 100 : null",
-              "as": "rate_per_100"
-            }
+            { "filter": "datum.geo && datum.geo.properties && datum.geo.properties.adm0_a3 == 'MYS'" }
           ],
           "mark": { "type": "geoshape", "stroke": "white", "strokeWidth": 0.5 },
           "encoding": {
@@ -64,10 +67,10 @@
             "color": {
               "field": "rate_per_100",
               "type": "quantitative",
-              "title": "Drug addicts per 100 population",
+              "title": "Drug addicts per 100 people",
               "scale": {
                 "type": "threshold",
-                "domain": [0.5, 1, 1.5, 2, 2.5], 
+                "domain": [0.5, 1, 1.5, 2, 2.5],
                 "range": ["#fef0d9", "#fdd49e", "#fdbb84", "#fc8d59", "#e34a33", "#b30000"]
               },
               "legend": { "orient": "bottom", "direction": "horizontal" }
@@ -75,8 +78,13 @@
             "tooltip": [
               { "field": "state_match", "title": "State", "type": "nominal" },
               { "field": "rate_per_100", "title": "Per 100", "type": "quantitative", "format": ".2f" },
-              { "field": "drug_addicts", "title": "Drug addicts (sum)", "type": "quantitative" },
-              { "field": "population", "title": "Population (sum)", "type": "quantitative" }
+              { "field": "sum_drug_addicts", "title": "Drug addicts (sum)", "type": "quantitative" },
+              {
+                "field": "sum_population_thousands",
+                "title": "Population (sum, '000)",
+                "type": "quantitative",
+                "format": ","
+              }
             ]
           }
         },
@@ -104,7 +112,13 @@
               "as": "label_state"
             }
           ],
-          "mark": { "type": "text", "fontSize": 11, "baseline": "middle", "align": "center", "color": "black" },
+          "mark": {
+            "type": "text",
+            "fontSize": 11,
+            "baseline": "middle",
+            "align": "center",
+            "color": "black"
+          },
           "encoding": {
             "longitude": { "field": "lon", "type": "quantitative" },
             "latitude": { "field": "lat", "type": "quantitative" },
@@ -113,35 +127,44 @@
         }
       ]
     },
-
     {
       "width": "container",
       "height": 80,
-      "mark": "line",
       "title": "Drag to filter by year range",
       "data": {
         "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/state_drug_population_by_year.csv",
-        "format": { "type": "csv", "parse": { "year": "number", "drug_addicts": "number" } }
+        "format": {
+          "type": "csv",
+          "parse": { "year": "number", "drug_addicts": "number", "population": "number" }
+        }
       },
+      "mark": "line",
       "params": [
+        { "name": "time_brush", "select": { "type": "interval", "encodings": ["x"] } }
+      ],
+      "transform": [
         {
-          "name": "time_brush",
-          "select": { "type": "interval", "encodings": ["x"] }
+          "aggregate": [
+            { "op": "sum", "field": "drug_addicts", "as": "sum_drug_addicts" },
+            { "op": "sum", "field": "population", "as": "sum_population_thousands" }
+          ],
+          "groupby": ["year"]
+        },
+        {
+          "calculate": "datum.sum_population_thousands > 0 ? (datum.sum_drug_addicts / (datum.sum_population_thousands * 1000)) * 100 : null",
+          "as": "rate_per_100"
         }
       ],
       "encoding": {
         "x": { "field": "year", "type": "quantitative", "axis": { "title": "" } },
         "y": {
-          "aggregate": "sum",
-          "field": "drug_addicts",
-          "title": "Total addicts",
+          "field": "rate_per_100",
+          "type": "quantitative",
+          "title": "Rate per 100",
           "axis": { "grid": false, "tickCount": 3 }
         }
       }
     }
   ],
-  "config": {
-    "title": { "font": "sans-serif", "fontSize": 14 },
-    "view": { "stroke": null }
-  }
+  "config": { "title": { "font": "sans-serif", "fontSize": 14 }, "view": { "stroke": null } }
 }
