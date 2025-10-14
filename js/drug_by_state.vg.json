@@ -1,32 +1,18 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "config": {
-    "title": {
-      "font": "Marker Felt, Comic Sans MS, sans-serif",
-      "fontSize": 32,
-      "fontWeight": 600,
-      "anchor": "middle",
-      "color": "#222"
-    },
-    "legend": {
-      "orient": "bottom",
-      "direction": "horizontal",
-      "titleAnchor": "middle",
-      "labelColor": "black",
-      "titleColor": "black",
-      "labelFontSize": 12,
-      "titleFontSize": 13,
-      "symbolSize": 80
-    },
-    "view": { "stroke": null }
-  },
   "title": "Drug Addiction in Malaysia by State (per 100,000 population, 2021)",
   "width": "container",
   "height": 560,
-  "autosize": { "type": "fit", "contains": "padding", "resize": true },
-  "padding": { "top": 60, "right": 80, "bottom": 80, "left": 80 },
+  "autosize": { "type": "fit", "resize": true },
   "projection": { "type": "equalEarth" },
   "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/ne_10m_ocean.topojson",
+        "format": {"type": "topojson", "feature": "oceans"}
+      },
+      "mark": {"type": "geoshape", "fill": "skyblue"}
+    },
     {
       "data": {
         "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/MalaysiaMapWithGraticules.topojson",
