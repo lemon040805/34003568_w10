@@ -73,25 +73,24 @@
       "mark": { "type": "geoshape", "stroke": "white" },
       "encoding": {
         "color": {
-          "condition": {
-            "test": "isValid(datum.rate_per_100k)",
-            "field": "rate_per_100k",
-            "type": "quantitative",
-            "title": "Drug addicts per 100,000",
-            "scale": {
-              "type": "threshold",
-              "domain": [18, 50, 82, 114, 146],
-              "range": ["#fef0d9", "#fdd49e", "#fdbb84", "#fc8d59", "#e34a33", "#b30000"]
-            },
-            "legend": { "orient": "bottom", "direction": "horizontal" }
+          "field": "rate_per_100k",
+          "type": "quantitative",
+          "title": "Drug addicts per 100,000",
+          "scale": {
+          "type": "threshold",
+          "domain": [18, 50, 82, 114, 146],
+          "range": ["#fef0d9", "#fdd49e", "#fdbb84", "#fc8d59", "#e34a33", "#b30000"]
           },
-          "value": "#e5e5e5"
+          "legend": { 
+            "orient": "bottom", 
+            "direction": "horizontal" 
+          }
         },
         "tooltip": [
-          { "field": "state_key", "title": "State" },
-          { "field": "drug_addicts", "title": "Drug addicts" },
-          { "field": "population", "title": "Population ('000)" },
-          { "field": "rate_per_100k", "title": "Per 100,000", "format": ".2f" }
+          { "field": "state_key", "title": "State", "type": "nominal" },
+          { "field": "rate_per_100k", "title": "Per 100,000", "type": "quantitative", "format": ".2f" },
+          { "field": "drug_addicts", "title": "Drug addicts", "type": "quantitative" },
+          { "field": "population", "title": "Population ('000)", "type":"quantitative" }
         ]
       }
     },
