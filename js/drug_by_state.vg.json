@@ -9,7 +9,7 @@
     {
       "data": {
         "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/ne_10m_ocean.topojson",
-        "format": {"type": "topojson", "feature": "oceans"}
+        "format": {"type": "topojson", "feature": "ne_10m_ocean"}
       },
       "mark": {"type": "geoshape", "fill": "skyblue"}
     },
