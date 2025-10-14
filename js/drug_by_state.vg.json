@@ -16,14 +16,14 @@
         },
         {
           "data": {
-            "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/MalaysiaMapWithGraticules.topojson",
+            "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/js/MalaysiaMapWithGraticules.topojson",
             "format": { "type": "topojson", "feature": "ne_10m_graticules_5" }
           },
           "mark": { "type": "geoshape", "fill": null, "stroke": "lightgray" }
         },
         {
           "data": {
-            "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/data/state_drug_population_by_year.csv",
+            "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/state_drug_population_by_year.csv",
             "format": { "type": "csv", "parse": { "year": "number", "drug_addicts": "number", "population": "number" } }
           },
           "transform": [
@@ -36,7 +36,7 @@
               "lookup": "state_match",
               "from": {
                 "data": {
-                  "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/MalaysiaMapWithGraticules.topojson",
+                  "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/js/MalaysiaMapWithGraticules.topojson",
                   "format": { "type": "topojson", "feature": "ne_10m_admin_1_states_provinces" }
                 },
                 "key": "properties.name",
@@ -75,7 +75,7 @@
         },
         {
           "data": {
-            "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/MalaysiaMapWithGraticules.topojson",
+            "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/js/MalaysiaMapWithGraticules.topojson",
             "format": { "type": "topojson", "feature": "ne_10m_admin_1_states_provinces" }
           },
           "transform": [
@@ -84,7 +84,7 @@
               "lookup": "properties.name",
               "from": {
                 "data": {
-                  "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/data/malaysia_state_centroids.csv",
+                  "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/malaysia_state_centroids.csv",
                   "format": { "type": "csv", "parse": { "lat": "number", "lon": "number" } }
                 },
                 "key": "state",
@@ -112,7 +112,7 @@
       "mark": "line",
       "title": "Drag to filter by year range",
       "data": {
-        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/data/state_drug_population_by_year.csv",
+        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/state_drug_population_by_year.csv",
         "format": { "type": "csv", "parse": { "year": "number", "drug_addicts": "number" } }
       },
       "params": [
