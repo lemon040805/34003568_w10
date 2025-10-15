@@ -96,8 +96,7 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/malaysia_state_centroids.csv",
-        "format": { "type": "csv" }
+        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/malaysia_state_centroids.csv"
       },
       "transform": [
         { "filter": "datum.state == 'Terengganu' || datum.state == 'Perlis' || datum.state == 'Kelantan' || datum.state == 'Pulau Pinang' || datum.state == 'W.P. Kuala Lumpur' || datum.state == 'Kedah' ||  datum.state == 'Sabah'" }
