@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Drug Addiction in Malaysia by State (per 100,000 population, 2021)",
-  "width": "container",
-  "height": 800,
+  "width": 800,
+  "height": 400,
   "autosize": { "type": "fit", "resize": true },
   "projection": { "type": "equalEarth" },
   "layer": [
@@ -11,7 +11,7 @@
         "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/ne_10m_ocean.topojson",
         "format": { "type": "topojson", "feature": "ne_10m_ocean" }
       },
-      "mark": { "type": "geoshape", "fill": "skyblue" }
+      "mark": { "type": "geoshape", "fill": "lightblue" }
     },
     {
       "data": {
