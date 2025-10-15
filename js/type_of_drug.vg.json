@@ -1,0 +1,59 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 600,
+  "height": 600,
+  "data": {
+      "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/2004-2021%20Number%20Of%20Addicts%20By%20Type%20Of%20Drugs%20Malay.csv"
+  },
+  "params": [
+      {
+        "name": "Year_selection",
+        "value": 2021,
+        "bind": {
+            "input": "range",
+            "min": 2004,
+            "max": 2021,
+            "step": 1,
+            "name": "Year:  "
+        }
+      }
+  ],
+  "transform": [{ "filter": "datum.year == Year_selection" }],
+  "layer": [
+    {
+      "encoding": {
+        "theta": {"field": "value", "type": "quantitative" },
+        "color": {
+          "field": "drug_type", 
+          "type": "nominal",
+          "scale":{
+            "range": [
+              "#e41a1c",
+              "#984ea3",
+              "#ff7f00",
+              "#a6cee3",
+              "#377eb8",
+              "#a65628",
+              "#f0e442"
+            ]
+          }
+        }
+    },
+    "layer": [{
+      "mark": {"type": "arc", "outerRadius": 80}
+    }, {
+      "mark": {"type": "text", "radius": 100},
+      "encoding": {
+        "text": {"field": "drug_type", "type": "nominal"},
+        "opacity": {
+          "condition": {
+            "test": "datum['drug_type'] == 'Methamphetamine (crystalline)'", 
+            "value": 1
+            },
+            "value": 0
+        }
+      }
+      }]
+    }
+  ]
+}
