@@ -29,3 +29,9 @@ html, body {
   height: 100vh;               
   gap: 40px;                     
 }
+
+.vega-bindings {
+  display: flex;
+  justify-content: center;  
+  margin-bottom: 10px;
+}
