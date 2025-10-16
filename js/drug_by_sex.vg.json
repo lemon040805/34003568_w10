@@ -1,0 +1,52 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 1000,
+    "height": 200,
+    "data": {
+        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/drug_by_sex.csv"
+    },
+    "mark": "area",
+    "encoding": {
+        "x": {
+            "field": "year",
+            "type": "quantitative",
+            "axis": {
+                "title": null,
+                "format": ""
+            }
+        },
+        "y": {
+            "aggregate": "sum",
+            "field": "value",
+            "title": "Drug Addicts",
+            "axis": {
+                "titlePadding": 20
+            }
+        },
+        "color": {
+            "field": "sex",
+            "title": "Sex",
+            "scale": {
+                "scheme": "set2"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "year",
+                "title": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "sex",
+                "title": "Sex",
+                "type": "nominal"
+            },
+            {
+                "field": "value",
+                "title": "Drug Addicts",
+                "type": "quantitative",
+                "format": ","
+            }
+        ]
+    }
+}
