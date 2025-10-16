@@ -1,50 +1,68 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Drug Addiction in Malaysia by State (per 100,000 population, 2000-2021)",
-  "width": 1200,
+  "width": "container",
   "height": 600,
-  "projection": { "type": "mercator"},
+  "projection": {
+    "type": "mercator"
+  },
   "params": [
-      {
-        "name": "Year_selection",
-        "value": 2021,
-        "bind": {
-            "input": "range",
-            "min": 2000,
-            "max": 2021,
-            "step": 1,
-            "name": "Year:  "
-        }
+    {
+      "name": "Year_selection",
+      "value": 2021,
+      "bind": {
+        "input": "range",
+        "min": 2000,
+        "max": 2021,
+        "step": 1,
+        "name": "Year:  "
       }
+    }
   ],
   "layer": [
-      {
-        "data": {
-            "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/ne_10m.topojson",
-            "format": { "type": "topojson", "feature": "ne_10m_admin_1_states_provinces" }
-        },
-        "transform": [{
-            "calculate": "'Data is not available in ' + datum.properties.name",
-            "as": "note"
-        }],
-        "mark": {
-            "type": "geoshape",
-            "fill": "#ddd",
-            "stroke": "white",
-            "strokeWidth": 1
-        },
-        "encoding": { "tooltip": { "field": "note" } }
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/ne_10m.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "ne_10m_admin_1_states_provinces"
+        }
+      },
+      "transform": [
+        {
+          "calculate": "'Data is not available in ' + datum.properties.name",
+          "as": "note"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#ddd",
+        "stroke": "white",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "tooltip": {
+          "field": "note"
+        }
+      }
     },
     {
       "data": {
         "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/ne_10m.topojson",
-        "format": { "type": "topojson", "feature": "ne_10m_graticules_5" }
+        "format": {
+          "type": "topojson",
+          "feature": "ne_10m_graticules_5"
+        }
       },
-      "mark": { "type": "geoshape", "fill": null, "stroke": "lightgray" }
+      "mark": {
+        "type": "geoshape",
+        "fill": null,
+        "stroke": "lightgray"
+      }
     },
     {
       "data": {
-          "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/state_drug_population_by_year.csv"
+        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/state_drug_population_by_year.csv"
       },
       "transform": [
         {
@@ -54,44 +72,75 @@
         {
           "lookup": "state_key",
           "from": {
-              "data": {
-                  "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/js/MalaysiaMapWithGraticules.topojson",
-                  "format": {
-                      "type": "topojson",
-                      "feature": "ne_10m_admin_1_states_provinces"
-                  }
-              },
-              "key": "properties.name"
+            "data": {
+              "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/js/MalaysiaMapWithGraticules.topojson",
+              "format": {
+                "type": "topojson",
+                "feature": "ne_10m_admin_1_states_provinces"
+              }
             },
-            "as": "geo"
+            "key": "properties.name"
+          },
+          "as": "geo"
         },
-        { "filter": "datum.year == Year_selection" },
+        {
+          "filter": "datum.year == Year_selection"
+        },
         {
           "calculate": "datum.drug_addicts / datum.population * 100",
           "as": "rate_per_100k"
         }
       ],
-      "mark": { "type": "geoshape", "stroke": "#fff", "strokeWidth": 0.5 },
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#fff",
+        "strokeWidth": 0.5
+      },
       "encoding": {
-          "shape": { "field": "geo", "type": "geojson" },
-          "color": {
-              "field": "rate_per_100k",
-              "type": "quantitative",
-              "scale": {
-                  "domain": [
-                      20, 200
-                  ],
-                  "nice": true,
-                  "scheme": "orangered",
-              },
-              "legend": { "title": "Drug Addicts per 100,000", "format": ".2s", "orient": "bottom"}
+        "shape": {
+          "field": "geo",
+          "type": "geojson"
+        },
+        "color": {
+          "field": "rate_per_100k",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              20,
+              200
+            ],
+            "nice": true,
+            "scheme": "orangered",
           },
-          "tooltip": [
-              { "field": "year", "title": "Year", "type": "quantitative" },
-              { "field": "state", "title": "State", "type": "nominal" },
-              { "field": "drug_addicts", "title": "Drug addicts", "type": "quantitative" },
-              { "field": "rate_per_100k", "title": "Per 100,000", "type": "quantitative", "format": ".2f" }
-          ]
+          "legend": {
+            "title": "Drug Addicts per 100,000",
+            "format": ".2s",
+            "orient": "bottom"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "year",
+            "title": "Year",
+            "type": "quantitative"
+          },
+          {
+            "field": "state",
+            "title": "State",
+            "type": "nominal"
+          },
+          {
+            "field": "drug_addicts",
+            "title": "Drug addicts",
+            "type": "quantitative"
+          },
+          {
+            "field": "rate_per_100k",
+            "title": "Per 100,000",
+            "type": "quantitative",
+            "format": ".2f"
+          }
+        ]
       }
     },
     {
@@ -106,10 +155,15 @@
               "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/data/malaysia_state_centroids.csv",
             },
             "key": "state",
-            "fields": [ "lat", "lon" ]
+            "fields": [
+              "lat",
+              "lon"
+            ]
           }
         },
-        { "filter": "datum.state == 'Terengganu' || datum.state == 'Perlis' || datum.state == 'Kelantan' || datum.state == 'Pulau Pinang' || datum.state == 'W.P. Kuala Lumpur' || datum.state == 'Kedah' ||  datum.state == 'Sabah'" },
+        {
+          "filter": "datum.state == 'Terengganu' || datum.state == 'Perlis' || datum.state == 'Kelantan' || datum.state == 'Pulau Pinang' || datum.state == 'W.P. Kuala Lumpur' || datum.state == 'Kedah' ||  datum.state == 'Sabah'"
+        },
         {
           "calculate": "datum.drug_addicts / datum.population * 100",
           "as": "rate_per_100k"
@@ -120,14 +174,40 @@
         "fontStyle": "italic"
       },
       "encoding": {
-        "text": {"field": "state", "type": "nominal"},
-        "longitude": { "field": "lon", "type": "quantitative" },
-        "latitude": { "field": "lat", "type": "quantitative" },
+        "text": {
+          "field": "state",
+          "type": "nominal"
+        },
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
         "tooltip": [
-            { "field": "year", "title": "Year", "type": "quantitative" },
-            { "field": "state", "title": "State", "type": "nominal" },
-            { "field": "drug_addicts", "title": "Drug addicts", "type": "quantitative" },
-            { "field": "rate_per_100k", "title": "Per 100,000", "type": "quantitative", "format": ".2f" }
+          {
+            "field": "year",
+            "title": "Year",
+            "type": "quantitative"
+          },
+          {
+            "field": "state",
+            "title": "State",
+            "type": "nominal"
+          },
+          {
+            "field": "drug_addicts",
+            "title": "Drug addicts",
+            "type": "quantitative"
+          },
+          {
+            "field": "rate_per_100k",
+            "title": "Per 100,000",
+            "type": "quantitative",
+            "format": ".2f"
+          }
         ]
       }
     }

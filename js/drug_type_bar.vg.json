@@ -1,0 +1,75 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Drug Type Distribution Among Reported Addiction Cases in Malaysia",
+    "width": "container",
+    "height": 300,
+    "data": {
+        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/drug_type_by_year.csv"
+    },
+    "mark": {
+        "type": "bar",
+        "fill": "#ddd",
+        "stroke": "black",
+        "strokeWidth": 1
+    },
+    "transform": [
+        {
+            "filter": "datum.year == Year_selection"
+        },
+        {
+            "calculate": "toNumber(datum.value)",
+            "as": "val"
+        },
+        {
+            "window": [
+                {
+                    "op": "rank",
+                    "as": "ranking"
+                }
+            ],
+            "sort": [
+                {
+                    "field": "val",
+                    "order": "descending"
+                }
+            ]
+        },
+        {
+            "filter": "datum.ranking <= 5"
+        }
+    ],
+    "encoding": {
+        "x": {
+            "field": "value",
+            "type": "quantitative",
+            "title": "Drug Addicts"
+        },
+        "y": {
+            "field": "drug_type",
+            "type": "ordinal",
+            "title": null,
+            "sort": {
+                "field": "value",
+                "order": "descending"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "year",
+                "title": "Year",
+                "type": "quantitative"
+            },
+            {
+                "field": "drug_type",
+                "title": "Type of Drug",
+                "type": "nominal"
+            },
+            {
+                "field": "value",
+                "title": "Drug Addicts",
+                "type": "quantitative",
+                "format": ","
+            }
+        ]
+    }
+}

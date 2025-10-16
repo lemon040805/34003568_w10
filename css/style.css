@@ -1,35 +1,58 @@
-html, body {
-  margin: 0;
-  height: 100%;
-  font-family: 'Montserrat', sans-serif;
+body {
+  background: #f4f5f7;
+  font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
-
-.page-title {
+.hero {
+  background: linear-gradient(180deg, #111 0%, #1f1f1f 100%);
+  color: #fff;
+  padding: 56px 0;
+  background-size: cover;
+  background-position: center;
+}
+.hero .title {
   font-family: 'Bebas Neue', serif;
-  font-size: 10rem;
-  font-weight: 1000;
-  text-align: center;
-  margin: 16px 0 8px;
+  font-size: 4rem;
   letter-spacing: 1px;
   text-transform: uppercase;
+  margin: 0 0 8px;
+  text-align: center;
 }
-
-#vis {
-  width: 70%;
-  height: 1200px; 
+.hero .subtitle {
+  font-weight: 400;
+  opacity: 0.9;
+  text-align: center;
+  margin: 0;
 }
-
-.vis-container {
+.card {
+  border: 0;
+  border-radius: 16px;
+}
+.card-header {
+  border-top-left-radius: 16px !important;
+  border-top-right-radius: 16px !important;
+}
+.viz-wrap {
+  width: 100%;
+}
+.viz-box {
+  width: 100%;
+  min-height: 420px;
+}
+/* Center and style Vega parameter bindings (sliders) after we move them */
+.slider-host .vega-bindings,
+.viz-box .vega-bindings {
   display: flex;
-  flex-direction: column;      
-  align-items: center;           
-  justify-content: center;       
-  height: 100vh;               
-  gap: 40px;                     
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0 12px;
+  flex-wrap: wrap;
 }
-
-.vega-bindings {
-  display: flex;
-  justify-content: center;  
-  margin-bottom: 10px;
+.slider-host input[type="range"] {
+  width: 380px;
+  max-width: 90vw;
+}
+.source {
+  font-size: 0.85rem;
+  color: #6c757d;
 }
