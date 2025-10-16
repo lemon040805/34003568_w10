@@ -53,7 +53,12 @@
         "x": {
             "field": "value",
             "type": "quantitative",
-            "title": "Drug Addicts"
+            "title": "Drug Addicts",
+            "axis": {
+                "labelFontSize": 14,
+                "titleFontSize": 16,
+                "titlePadding": 20
+            }
         },
         "y": {
             "field": "drug_type",
@@ -62,15 +67,19 @@
             "sort": {
                 "field": "value",
                 "order": "descending"
+            },
+            "axis": {
+                "labelFontSize": 14,
+                "labelLimit": 300
             }
         },
         "color": {
             "condition": {
-              "test": "datum.ranking == 1",
-              "value": "#f07860"
+                "test": "datum.ranking == 1",
+                "value": "#f07860"
             },
             "value": "#ddd"
-          },
+        },
         "tooltip": [
             {
                 "field": "year",
