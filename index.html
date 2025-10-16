@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Drug Addiction in Malaysia by State (2021)</title>
+  <title>Drug Addiction in Malaysia</title>
 
   <!-- Vega libraries -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
@@ -13,17 +13,11 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <div id="vis1"></div>
-  <div id="vis2"></div>
+  <div id="vis"></div>
 
   <script>
-    vegaEmbed('#vis1',
-      'https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/drug_by_state.vg.json',
-      {mode: 'vega-lite', actions: false}
-    );
-
-    vegaEmbed('#vis2',
-      'https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/type_of_drug.vg.json',
+    vegaEmbed('#vis',
+      'https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/drug_state_type.vg.json',
       {mode: 'vega-lite', actions: false}
     );
   </script>

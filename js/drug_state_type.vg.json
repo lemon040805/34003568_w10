@@ -259,14 +259,12 @@
                             "Opium",
                             "Codeine",
                             "Marijuana",
-                            "Ectasy Pill",
+                            "Ecstasy Pill",
                             "Amphetamine",
-                            "Metamphetamine",
                             "Psychotropic Pill",
                             "Opiate",
                             "Amphetamine-type stimulants (ATS)",
-                            "Methamphetamine (crystalline)",
-                            "Methamphetamine (pills)",
+                            "Methamphetamine (crystalline/pills)",
                             "Others"
                         ],
                         "range": [
@@ -281,9 +279,7 @@
                             "#c85b00",
                             "#bf8cfc",
                             "#cc34cd",
-                            "#970098",
-                            "#0050ae",
-                            "#551153"
+                            "#970098"
                         ]
                     }
                 },
@@ -301,7 +297,8 @@
                     {
                         "field": "value",
                         "title": "Drug Addicts",
-                        "type": "quantitative"
+                        "type": "quantitative",
+                        "format": ","
                     },
                     {
                         "field": "percentage",
@@ -347,7 +344,7 @@
                         },
                         "opacity": {
                             "condition": {
-                                "test": "datum.ranking == 1",
+                                "test": "datum.ranking <= 3",
                                 "value": 1
                             },
                             "value": 0
@@ -366,7 +363,8 @@
                             {
                                 "field": "value",
                                 "title": "Drug Addicts",
-                                "type": "quantitative"
+                                "type": "quantitative",
+                                "format": ","
                             },
                             {
                                 "field": "percentage",
