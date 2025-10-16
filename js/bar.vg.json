@@ -224,62 +224,51 @@
             "data": {
                 "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/drug_type_by_year.csv"
             },
+            "mark": {
+                "type": "bar",
+                "fill": "#ddd",
+                "stroke": "black",
+                "strokeWidth": 1
+            },
             "transform": [
                 {
                     "filter": "datum.year == Year_selection"
                 },
                 {
-                    "joinaggregate": [
+                    "calculate": "toNumber(datum.value)",
+                    "as": "val"
+                },
+                {
+                    "window": [
                         {
-                            "op": "sum",
-                            "field": "value",
-                            "as": "total_addicts"
+                            "op": "rank",
+                            "as": "ranking"
+                        }
+                    ],
+                    "sort": [
+                        {
+                            "field": "val",
+                            "order": "descending"
                         }
                     ]
                 },
                 {
-                    "calculate": "datum.value / datum.total_addicts",
-                    "as": "percentage"
+                    "filter": "datum.ranking <= 5"
                 }
             ],
             "encoding": {
-                "theta": {
+                "x": {
                     "field": "value",
                     "type": "quantitative",
-                    "stack": true
+                    "title": "Drug Addicts"
                 },
-                "color": {
+                "y": {
                     "field": "drug_type",
-                    "type": "nominal",
-                    "scale": {
-                        "domain": [
-                            "Heroin",
-                            "Morphine",
-                            "Opium",
-                            "Codeine",
-                            "Marijuana",
-                            "Ecstasy Pill",
-                            "Amphetamine",
-                            "Psychotropic Pill",
-                            "Opiate",
-                            "Amphetamine-type stimulants (ATS)",
-                            "Methamphetamine (crystalline/pills)",
-                            "Others"
-                        ],
-                        "range": [
-                            "#6c4f00",
-                            "#c6a000",
-                            "#00603d",
-                            "#008c5c",
-                            "#33b983",
-                            "#5ba8f7",
-                            "#002f64",
-                            "#1077f3",
-                            "#c85b00",
-                            "#bf8cfc",
-                            "#cc34cd",
-                            "#970098"
-                        ]
+                    "type": "ordinal",
+                    "title": null,
+                    "sort": {
+                        "field": "value",
+                        "order": "descending"
                     }
                 },
                 "tooltip": [
@@ -298,83 +287,9 @@
                         "title": "Drug Addicts",
                         "type": "quantitative",
                         "format": ","
-                    },
-                    {
-                        "field": "percentage",
-                        "title": "Percentage",
-                        "format": ".1%",
-                        "type": "quantitative"
                     }
                 ]
-            },
-            "layer": [
-                {
-                    "mark": {
-                        "type": "arc",
-                        "outerRadius": 80
-                    }
-                },
-                {
-                    "transform": [
-                        {
-                            "window": [
-                                {
-                                    "op": "rank",
-                                    "as": "ranking"
-                                }
-                            ],
-                            "sort": [
-                                {
-                                    "field": "percentage",
-                                    "order": "descending"
-                                }
-                            ]
-                        }
-                    ],
-                    "mark": {
-                        "type": "text",
-                        "radius": 100
-                    },
-                    "encoding": {
-                        "text": {
-                            "field": "percentage",
-                            "type": "quantitative",
-                            "format": ".1%"
-                        },
-                        "opacity": {
-                            "condition": {
-                                "test": "datum.ranking <= 3",
-                                "value": 1
-                            },
-                            "value": 0
-                        },
-                        "tooltip": [
-                            {
-                                "field": "year",
-                                "title": "Year",
-                                "type": "quantitative"
-                            },
-                            {
-                                "field": "drug_type",
-                                "title": "Type of Drug",
-                                "type": "nominal"
-                            },
-                            {
-                                "field": "value",
-                                "title": "Drug Addicts",
-                                "type": "quantitative",
-                                "format": ","
-                            },
-                            {
-                                "field": "percentage",
-                                "title": "Percentage",
-                                "format": ".1%",
-                                "type": "quantitative"
-                            }
-                        ]
-                    }
-                }
-            ]
+            }
         }
     ],
     "config": {
@@ -384,5 +299,3 @@
         }
     }
 }
-
-
