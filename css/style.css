@@ -3,12 +3,12 @@ body {
   font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
 
+/* Hero */
 .hero {
   background: linear-gradient(180deg, #111 0%, #1f1f1f 100%);
   color: #fff;
   padding: 48px 0;
 }
-
 .hero .title {
   font-family: 'Bebas Neue', serif;
   font-size: 3.5rem;
@@ -17,7 +17,6 @@ body {
   margin: 0 0 6px;
   text-align: center;
 }
-
 .hero .subtitle {
   font-weight: 400;
   opacity: 0.9;
@@ -26,34 +25,26 @@ body {
 }
 
 /* Wider cards */
-.wide-col {
-  flex: 0 0 95%;
-  max-width: 95%;
-}
+.wide-col { flex: 0 0 95%; max-width: 95%; }
 @media (min-width: 1400px) {
-  .wide-col {
-    flex: 0 0 90%;
-    max-width: 90%;
-  }
+  .wide-col { flex: 0 0 90%; max-width: 90%; }
 }
+.card { border: 0; border-radius: 16px; }
+.card-header { border-top-left-radius: 16px !important; border-top-right-radius: 16px !important; }
 
-.card {
-  border: 0;
-  border-radius: 16px;
-}
-.card-header {
-  border-top-left-radius: 16px !important;
-  border-top-right-radius: 16px !important;
-}
-
-/* Visualization */
+/* Visualization containers (merged) */
 .viz-wrap {
   width: 100%;
+  display: flex;
+  justify-content: center;           /* center the viz */
 }
 .viz-box {
   width: 100%;
+  max-width: 1200px;                 /* keep viz centered and not too wide */
   min-height: 420px;
 }
+
+/* Ensure embedded SVG/CANVAS expands to parent width */
 .viz-box .vega-embed,
 .viz-box .vega-embed > * {
   width: 100% !important;
@@ -75,7 +66,5 @@ body {
   max-width: 90vw;
 }
 
-.source {
-  font-size: 0.85rem;
-  color: #6c757d;
-}
+/* Sources */
+.source { font-size: 0.85rem; color: #6c757d; }

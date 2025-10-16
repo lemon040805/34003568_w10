@@ -90,11 +90,19 @@
     vegaEmbed('#map-vis',
       'https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/drug_by_state.vg.json',
       {mode: 'vega-lite', actions: false}
-    );
+    ).then(res => {
+        const host = document.getElementById('map-slider-host');
+        const bindings = res?.view?.container()?.querySelector('.vega-bindings');
+        if (bindings && host) host.appendChild(bindings);
+      });
     vegaEmbed('#bar-vis',
       'https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/drug_type_bar.vg.json',
       {mode: 'vega-lite', actions: false}
-    );
+    ).then(res => {
+        const host = document.getElementById('bar-slider-host');
+        const bindings = res?.view?.container()?.querySelector('.vega-bindings');
+        if (bindings && host) host.appendChild(bindings);
+      });
   </script>
 </body>
 </html>
