@@ -2,27 +2,41 @@ body {
   background: #f4f5f7;
   font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
+
 .hero {
   background: linear-gradient(180deg, #111 0%, #1f1f1f 100%);
   color: #fff;
-  padding: 56px 0;
-  background-size: cover;
-  background-position: center;
+  padding: 48px 0;
 }
+
 .hero .title {
   font-family: 'Bebas Neue', serif;
-  font-size: 4rem;
+  font-size: 3.5rem;
   letter-spacing: 1px;
   text-transform: uppercase;
-  margin: 0 0 8px;
+  margin: 0 0 6px;
   text-align: center;
 }
+
 .hero .subtitle {
   font-weight: 400;
   opacity: 0.9;
   text-align: center;
   margin: 0;
 }
+
+/* Wider cards */
+.wide-col {
+  flex: 0 0 95%;
+  max-width: 95%;
+}
+@media (min-width: 1400px) {
+  .wide-col {
+    flex: 0 0 90%;
+    max-width: 90%;
+  }
+}
+
 .card {
   border: 0;
   border-radius: 16px;
@@ -31,6 +45,8 @@ body {
   border-top-left-radius: 16px !important;
   border-top-right-radius: 16px !important;
 }
+
+/* Visualization */
 .viz-wrap {
   width: 100%;
 }
@@ -38,7 +54,13 @@ body {
   width: 100%;
   min-height: 420px;
 }
-/* Center and style Vega parameter bindings (sliders) after we move them */
+.viz-box .vega-embed,
+.viz-box .vega-embed > * {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Slider bindings */
 .slider-host .vega-bindings,
 .viz-box .vega-bindings {
   display: flex;
@@ -49,9 +71,10 @@ body {
   flex-wrap: wrap;
 }
 .slider-host input[type="range"] {
-  width: 380px;
+  width: 420px;
   max-width: 90vw;
 }
+
 .source {
   font-size: 0.85rem;
   color: #6c757d;
