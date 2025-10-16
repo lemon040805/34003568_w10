@@ -1,28 +1,98 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <title>Drug Addiction in Malaysia</title>
 
-  <!-- Load fonts -->
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
   <!-- Vega libraries -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-  
 
   <!-- External CSS -->
-  <link rel="stylesheet" href="https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/css/style.css" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
-  <div class="page-title">Drug Addiction in Malaysia</div>
-  <div id="vis"></div>
+  <!-- Header -->
+  <section class="hero">
+    <div class="container-fluid">
+      <div class="title">Drug Addiction in Malaysia</div>
+    </div>
+  </section>
+
+  <div class="container-fluid my-4">
+    <!-- MAP CARD -->
+    <div class="row justify-content-center mb-4">
+      <div class="wide-col">
+        <div class="card shadow-lg">
+          <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">Geographic Distribution of Drug Addiction in Malaysia (2000-2021)</h5>
+          </div>
+          <div class="card-body">
+            <div id="map-slider-host" class="slider-host mb-2"></div>
+            <div class="viz-wrap d-flex justify-content-center">
+              <div id="map-vis" class="viz-box"></div>
+            </div>
+            <hr>
+            <div class="text-right source">
+              Sources:<br>
+              <a href="https://open.dosm.gov.my/data-catalogue/population_state" target="_blank" rel="noopener noreferrer">
+                Population by State – open.dosm.gov.my
+              </a><br>
+              <a href="https://archive.data.gov.my/data/en_US/dataset/number-of-drug-addicts-by-state-malaysia" target="_blank" rel="noopener noreferrer">
+                Number of Drug Addicts by State, Malaysia – data.gov.my
+              </a><br>
+              <a href="https://data.humdata.org/dataset/cod-ab-mys" target="_blank" rel="noopener noreferrer">
+                Malaysia Administrative Boundaries – HDX (COD-AB-MYS)
+              </a><br>
+              <a href="https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-1-states-provinces/" target="_blank" rel="noopener noreferrer">
+                Natural Earth – 1:10m Admin 1 States and Provinces
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BAR CARD -->
+    <div class="row justify-content-center mb-5">
+      <div class="wide-col">
+        <div class="card shadow-lg">
+          <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">Drug Type Distribution Among Reported Addiction Cases in Malaysia (2004-2021)</h5>
+          </div>
+          <div class="card-body">
+            <div id="bar-slider-host" class="slider-host mb-2"></div>
+            <div class="viz-wrap d-flex justify-content-center">
+              <div id="bar-vis" class="viz-box"></div>
+            </div>
+            <hr>
+            <div class="text-right source">
+              Sources:
+              <a href="https://archive.data.gov.my/data/en_US/dataset/number-of-addicts-by-type-of-drugs-malaysia" target="_blank" rel="noopener noreferrer">
+                Number Of Addicts By Type Of Drugs, Malaysia – data.gov.my
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script>
-    vegaEmbed('#vis',
-      'https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/bar.vg.json',
+    vegaEmbed('#map-vis',
+      'https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/drug_by_state.vg.json',
+      {mode: 'vega-lite', actions: false}
+    );
+    vegaEmbed('#bar-vis',
+      'https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/drug_type_bar.vg.json',
       {mode: 'vega-lite', actions: false}
     );
   </script>
