@@ -1,6 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 800,
+    "width": 900,
     "height": 300,
     "data": {
         "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/drug_type_by_year.csv"
