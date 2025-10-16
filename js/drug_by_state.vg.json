@@ -25,6 +25,20 @@
         "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/ne_10m.topojson",
         "format": {
           "type": "topojson",
+          "feature": "ne_10m_graticules_5"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": null,
+        "stroke": "lightgray"
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/ne_10m.topojson",
+        "format": {
+          "type": "topojson",
           "feature": "ne_10m_admin_1_states_provinces"
         }
       },
@@ -44,20 +58,6 @@
         "tooltip": {
           "field": "note"
         }
-      }
-    },
-    {
-      "data": {
-        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/ne_10m.topojson",
-        "format": {
-          "type": "topojson",
-          "feature": "ne_10m_graticules_5"
-        }
-      },
-      "mark": {
-        "type": "geoshape",
-        "fill": null,
-        "stroke": "lightgray"
       }
     },
     {
@@ -110,12 +110,11 @@
               200
             ],
             "nice": true,
-            "scheme": "orangered",
+            "scheme": "reds"
           },
           "legend": {
             "title": "Drug Addicts per 100,000",
-            "format": ".2s",
-            "orient": "bottom"
+            "format": ".2s"
           }
         },
         "tooltip": [
@@ -152,7 +151,7 @@
           "lookup": "state",
           "from": {
             "data": {
-              "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/data/malaysia_state_centroids.csv",
+              "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/data/malaysia_state_centroids.csv"
             },
             "key": "state",
             "fields": [
@@ -163,6 +162,9 @@
         },
         {
           "filter": "datum.state == 'Terengganu' || datum.state == 'Perlis' || datum.state == 'Kelantan' || datum.state == 'Pulau Pinang' || datum.state == 'W.P. Kuala Lumpur' || datum.state == 'Kedah' ||  datum.state == 'Sabah'"
+        },
+        {
+          "filter": "datum.year == Year_selection"
         },
         {
           "calculate": "datum.drug_addicts / datum.population * 100",
