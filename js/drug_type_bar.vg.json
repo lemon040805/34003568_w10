@@ -1,11 +1,24 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": "Drug Type Distribution Among Reported Addiction Cases in Malaysia",
-    "width": "container",
+    "width": 800,
     "height": 300,
     "data": {
         "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/drug_type_by_year.csv"
     },
+    "params": [
+        {
+            "name": "Year_selection",
+            "value": 2021,
+            "bind": {
+                "input": "range",
+                "min": 2004,
+                "max": 2021,
+                "step": 1,
+                "name": "Year:  "
+            }
+        }
+    ],
     "mark": {
         "type": "bar",
         "fill": "#ddd",
