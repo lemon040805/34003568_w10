@@ -13,17 +13,19 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <div id="vis"></div>
+  <div id="vis1"></div>
+  <div id="vis2"></div>
 
   <script>
-  vegaEmbed('#vis',
-    'https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/drug_by_state.vg.json',
-    {mode: 'vega-lite', actions: false}
-  )
-  vegaEmbed('#vis',
-    'https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/type_of_drug.vg.json',
-    {mode: 'vega-lite', actions: false}
-  )
+    vegaEmbed('#vis1',
+      'https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/drug_by_state.vg.json',
+      {mode: 'vega-lite', actions: false}
+    );
+
+    vegaEmbed('#vis2',
+      'https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/type_of_drug.vg.json',
+      {mode: 'vega-lite', actions: false}
+    );
   </script>
 </body>
 </html>
