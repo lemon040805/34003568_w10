@@ -115,7 +115,8 @@
           "legend": {
             "title": "Drug Addicts per 100,000",
             "format": ".2s",
-            "orient": "bottom"
+            "orient": "bottom",
+            "direction": "horizontal"
           }
         },
         "tooltip": [
