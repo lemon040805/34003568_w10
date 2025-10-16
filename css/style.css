@@ -62,8 +62,8 @@ body {
   flex-wrap: wrap;
 }
 .slider-host input[type="range"] {
-  width: 100%;
-  max-width: 100%;
+  width: 1000px;
+  max-width: 90vw;
 }
 
 /* Sources */
