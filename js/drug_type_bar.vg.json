@@ -1,6 +1,5 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "Drug Type Distribution Among Reported Addiction Cases in Malaysia",
     "width": 1200,
     "height": 300,
     "data": {
