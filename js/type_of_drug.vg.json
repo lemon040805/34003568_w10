@@ -1,9 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 600,
-  "height": 600,
+  "width": 300,
+  "height": 300,
   "data": {
-      "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/2004-2021%20Number%20Of%20Addicts%20By%20Type%20Of%20Drugs%20Malay.csv"
+      "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/drug_type_by_year.csv"
   },
   "params": [
       {
@@ -18,11 +18,22 @@
         }
       }
   ],
-  "transform": [{ "filter": "datum.year == Year_selection" }],
+  "transform": [
+    { "filter": "datum.year == Year_selection" },
+    {
+      "joinaggregate": [
+        { "op": "sum", "field": "value", "as": "total_addicts" }
+      ]
+    },
+    {
+      "calculate": "datum.value / datum.total_addicts",
+      "as": "percentage"
+    }
+  ],
   "layer": [
     {
       "encoding": {
-        "theta": {"field": "value", "type": "quantitative" },
+        "theta": {"field": "value", "type": "quantitative", "stack": true },
         "color": {
           "field": "drug_type", 
           "type": "nominal",
@@ -37,23 +48,44 @@
               "#f0e442"
             ]
           }
-        }
+        },
+        "tooltip": [
+          { "field": "year", "title": "Year", "type": "quantitative" },
+          { "field": "drug_type", "title": "Type of Drug", "type": "nominal" },
+          { "field": "value", "title": "Drug Addicts", "type": "quantitative" },
+          { "field": "percentage", "title": "Percentage", "format": ".1%", "type": "quantitative" }
+        ]
     },
-    "layer": [{
+    "layer": [
+      {
       "mark": {"type": "arc", "outerRadius": 80}
-    }, {
-      "mark": {"type": "text", "radius": 100},
-      "encoding": {
-        "text": {"field": "drug_type", "type": "nominal"},
-        "opacity": {
-          "condition": {
-            "test": "datum['drug_type'] == 'Methamphetamine (crystalline)'", 
-            "value": 1
+      }, 
+      {
+        "transform": [
+          {
+            "window": [{"op": "rank", "as": "ranking"}],
+            "sort": [{"field": "percentage", "order":
+            "descending"}]
+          },
+          { "filter": "datum.ranking == 1" }
+      ],
+        "mark": {"type": "text", "radius": 100},
+        "encoding": {
+          "text": 
+            {
+              "field": "percentage",
+              "type": "quantitative",
+              "format": ".1%"
             },
-            "value": 0
+          "tooltip": [
+            { "field": "year", "title": "Year", "type": "quantitative" },
+            { "field": "drug_type", "title": "Type of Drug", "type": "nominal" },
+            { "field": "value", "title": "Drug Addicts", "type": "quantitative" },
+          { "field": "percentage", "title": "Percentage", "format": ".1%", "type": "quantitative" }
+          ]
         }
       }
-      }]
+      ]
     }
   ]
 }

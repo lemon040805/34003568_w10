@@ -67,7 +67,7 @@
         },
         { "filter": "datum.year == Year_selection" },
         {
-          "calculate": "isValid(datum.population) && isValid(datum.drug_addicts) ? (datum.drug_addicts / datum.population * 100) : null",
+          "calculate": "datum.drug_addicts / datum.population * 100",
           "as": "rate_per_100k"
         }
       ],
@@ -88,7 +88,7 @@
           },
           "tooltip": [
               { "field": "year", "title": "Year", "type": "quantitative" },
-              { "field": "state_key", "title": "State", "type": "nominal" },
+              { "field": "state", "title": "State", "type": "nominal" },
               { "field": "drug_addicts", "title": "Drug addicts", "type": "quantitative" },
               { "field": "rate_per_100k", "title": "Per 100,000", "type": "quantitative", "format": ".2f" }
           ]
@@ -96,22 +96,39 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/refs/heads/main/data/malaysia_state_centroids.csv"
+        "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/data/state_drug_population_by_year.csv"
       },
       "transform": [
-        { "filter": "datum.state == 'Terengganu' || datum.state == 'Perlis' || datum.state == 'Kelantan' || datum.state == 'Pulau Pinang' || datum.state == 'W.P. Kuala Lumpur' || datum.state == 'Kedah' ||  datum.state == 'Sabah'" }
+        {
+          "lookup": "state",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/lemon040805/34003568_w10/main/data/malaysia_state_centroids.csv",
+            },
+            "key": "state",
+            "fields": [ "lat", "lon" ]
+          }
+        },
+        { "filter": "datum.state == 'Terengganu' || datum.state == 'Perlis' || datum.state == 'Kelantan' || datum.state == 'Pulau Pinang' || datum.state == 'W.P. Kuala Lumpur' || datum.state == 'Kedah' ||  datum.state == 'Sabah'" },
+        {
+          "calculate": "datum.drug_addicts / datum.population * 100",
+          "as": "rate_per_100k"
+        }
       ],
       "mark": {
         "type": "text",
-        "baseline": "middle",
-        "fontSize": 11.5,
         "fontStyle": "italic"
       },
       "encoding": {
         "text": {"field": "state", "type": "nominal"},
         "longitude": { "field": "lon", "type": "quantitative" },
         "latitude": { "field": "lat", "type": "quantitative" },
-        "color": {"value": "black"}
+        "tooltip": [
+            { "field": "year", "title": "Year", "type": "quantitative" },
+            { "field": "state", "title": "State", "type": "nominal" },
+            { "field": "drug_addicts", "title": "Drug addicts", "type": "quantitative" },
+            { "field": "rate_per_100k", "title": "Per 100,000", "type": "quantitative", "format": ".2f" }
+        ]
       }
     }
   ]
