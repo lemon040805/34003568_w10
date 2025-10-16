@@ -4,6 +4,18 @@ html, body {
   font-family: 'Montserrat', sans-serif;
 }
 
+.page-title {
+  font-family: 'Bebas Neue', serif; 
+  font-size: 2.5rem;                
+  font-weight: 700;                       
+  text-align: center;                     
+  color: "black";                           
+  margin-top: 40px;                       
+  margin-bottom: 30px;                    
+  letter-spacing: 1px;                   
+  text-transform: uppercase;             
+}
+
 #vis {
   width: 80%;
   height: 1200px; 
