@@ -15,7 +15,7 @@
     ],
     "vconcat": [
         {
-            "title": "Drug Addiction in Malaysia by State (per 100,000 population, 2004-2021)",
+            "title": "Geographic Distribution of Drug Addiction in Malaysia",
             "width": 1200,
             "height": 600,
             "projection": {
@@ -219,7 +219,7 @@
             ]
         },
         {
-            "title": "Drug Addiction in Malaysia by Drug Type (2004-2021)",
+            "title": "Drug Type Distribution Among Reported Addiction Cases in Malaysia",
             "width": 1200,
             "height": 300,
             "data": {
