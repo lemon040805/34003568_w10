@@ -19,10 +19,11 @@
   vegaEmbed('#vis',
     'https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/drug_by_state.vg.json',
     {mode: 'vega-lite', actions: false}
-  ).catch(err => {
-    console.error('Vega embed error:', err);
-    alert('Viz error: ' + (err?.message || err));
-  });
+  )
+  vegaEmbed('#vis',
+    'https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/type_of_drug.vg.json',
+    {mode: 'vega-lite', actions: false}
+  )
   </script>
 </body>
 </html>
