@@ -1,0 +1,826 @@
+year,state,population
+1970,Johor,1325.6
+1970,Kedah,989.5
+1970,Kelantan,707.3
+1970,Melaka,419.4
+1970,Negeri Sembilan,500.4
+1970,Pahang,523.8
+1970,Perak,1631.5
+1970,Perlis,125.5
+1970,Pulau Pinang,808.6
+1970,Sabah,698.1
+1970,Sarawak,1037.0
+1970,Selangor,1696.4
+1970,Terengganu,418.8
+1971,Johor,1355.4
+1971,Kedah,1003.9
+1971,Kelantan,723.6
+1971,Melaka,424.9
+1971,Negeri Sembilan,508.2
+1971,Pahang,548.4
+1971,Perak,1650.9
+1971,Perlis,127.4
+1971,Pulau Pinang,823.7
+1971,Sabah,728.1
+1971,Sarawak,1065.2
+1971,Selangor,1770.9
+1971,Terengganu,429.0
+1972,Johor,1385.3
+1972,Kedah,1017.3
+1972,Kelantan,741.1
+1972,Melaka,429.9
+1972,Negeri Sembilan,515.9
+1972,Pahang,574.0
+1972,Perak,1669.3
+1972,Perlis,129.7
+1972,Pulau Pinang,838.9
+1972,Sabah,759.5
+1972,Sarawak,1094.3
+1972,Selangor,1846.7
+1972,Terengganu,439.5
+1973,Johor,1414.5
+1973,Kedah,1029.0
+1973,Kelantan,759.5
+1973,Melaka,434.2
+1973,Negeri Sembilan,522.8
+1973,Pahang,599.3
+1973,Perak,1686.0
+1973,Perlis,131.7
+1973,Pulau Pinang,852.9
+1973,Sabah,792.4
+1973,Sarawak,1124.1
+1973,Selangor,1922.4
+1973,Terengganu,451.0
+1974,Johor,1444.4
+1974,Kedah,1041.1
+1974,Kelantan,776.8
+1974,Melaka,438.1
+1974,Negeri Sembilan,530.0
+1974,Pahang,626.0
+1974,Perak,1702.7
+1974,Perlis,133.8
+1974,Pulau Pinang,866.7
+1974,Sabah,826.9
+1974,Sarawak,1154.7
+1974,Selangor,1997.9
+1974,Terengganu,462.0
+1975,Johor,1477.0
+1975,Kedah,1054.9
+1975,Kelantan,796.1
+1975,Melaka,443.1
+1975,Negeri Sembilan,537.6
+1975,Pahang,653.4
+1975,Perak,1720.9
+1975,Perlis,136.2
+1975,Pulau Pinang,881.7
+1975,Sabah,863.0
+1975,Sarawak,1186.2
+1975,Selangor,2075.3
+1975,Terengganu,474.9
+1976,Johor,1508.4
+1976,Kedah,1065.4
+1976,Kelantan,814.1
+1976,Melaka,447.3
+1976,Negeri Sembilan,544.3
+1976,Pahang,680.4
+1976,Perak,1736.7
+1976,Perlis,138.3
+1976,Pulau Pinang,896.4
+1976,Sabah,898.1
+1976,Sarawak,1217.5
+1976,Selangor,2154.3
+1976,Terengganu,486.9
+1977,Johor,1541.9
+1977,Kedah,1079.8
+1977,Kelantan,834.2
+1977,Melaka,452.1
+1977,Negeri Sembilan,551.8
+1977,Pahang,709.5
+1977,Perak,1755.6
+1977,Perlis,141.0
+1977,Pulau Pinang,912.2
+1977,Sabah,934.8
+1977,Sarawak,1249.6
+1977,Selangor,2237.7
+1977,Terengganu,500.9
+1978,Johor,1573.4
+1978,Kedah,1090.9
+1978,Kelantan,852.5
+1978,Melaka,456.2
+1978,Negeri Sembilan,558.7
+1978,Pahang,738.2
+1978,Perak,1771.5
+1978,Perlis,143.2
+1978,Pulau Pinang,925.7
+1978,Sabah,973.2
+1978,Sarawak,1282.5
+1978,Selangor,2320.9
+1978,Terengganu,513.4
+1979,Johor,1606.4
+1979,Kedah,1103.4
+1979,Kelantan,873.7
+1979,Melaka,460.8
+1979,Negeri Sembilan,566.4
+1979,Pahang,768.4
+1979,Perak,1789.1
+1979,Perlis,145.8
+1979,Pulau Pinang,940.4
+1979,Sabah,1013.3
+1979,Sarawak,1316.4
+1979,Selangor,2407.3
+1979,Terengganu,527.0
+1980,Johor,1646.2
+1980,Kedah,1119.9
+1980,Kelantan,895.7
+1980,Melaka,466.9
+1980,Negeri Sembilan,576.7
+1980,Pahang,802.1
+1980,Perak,1807.4
+1980,Perlis,148.7
+1980,Pulau Pinang,960.7
+1980,Sabah,1055.1
+1980,Sarawak,1351.1
+1980,Selangor,1524.1
+1980,Terengganu,541.7
+1980,W.P. Kuala Lumpur,982.9
+1981,Johor,1689.3
+1981,Kedah,1140.2
+1981,Kelantan,920.5
+1981,Melaka,472.6
+1981,Negeri Sembilan,587.2
+1981,Pahang,820.6
+1981,Perak,1838.2
+1981,Perlis,151.6
+1981,Pulau Pinang,975.4
+1981,Sabah,1119.6
+1981,Sarawak,1380.2
+1981,Selangor,1594.6
+1981,Terengganu,560.8
+1981,W.P. Kuala Lumpur,1006.1
+1982,Johor,1734.6
+1982,Kedah,1161.8
+1982,Kelantan,947.1
+1982,Melaka,478.7
+1982,Negeri Sembilan,598.9
+1982,Pahang,842.3
+1982,Perak,1866.8
+1982,Perlis,154.9
+1982,Pulau Pinang,990.9
+1982,Sabah,1186.5
+1982,Sarawak,1410.4
+1982,Selangor,1668.3
+1982,Terengganu,581.4
+1982,W.P. Kuala Lumpur,1028.5
+1983,Johor,1780.2
+1983,Kedah,1183.9
+1983,Kelantan,974.6
+1983,Melaka,484.8
+1983,Negeri Sembilan,611.3
+1983,Pahang,864.8
+1983,Perak,1891.1
+1983,Perlis,158.2
+1983,Pulau Pinang,1006.2
+1983,Sabah,1255.1
+1983,Sarawak,1440.6
+1983,Selangor,1743.8
+1983,Terengganu,602.9
+1983,W.P. Kuala Lumpur,1050.7
+1984,Johor,1825.8
+1984,Kedah,1206.1
+1984,Kelantan,1002.6
+1984,Melaka,491.2
+1984,Negeri Sembilan,623.8
+1984,Pahang,888.7
+1984,Perak,1912.3
+1984,Perlis,161.7
+1984,Pulau Pinang,1021.1
+1984,Sabah,1325.7
+1984,Sarawak,1471.4
+1984,Selangor,1822.0
+1984,Terengganu,625.8
+1984,W.P. Kuala Lumpur,1072.2
+1985,Johor,1875.5
+1985,Kedah,1230.8
+1985,Kelantan,1032.9
+1985,Melaka,498.6
+1985,Negeri Sembilan,638.4
+1985,Pahang,915.2
+1985,Perak,1931.5
+1985,Perlis,165.9
+1985,Pulau Pinang,1037.9
+1985,Sabah,1398.7
+1985,Sarawak,1503.9
+1985,Selangor,1906.1
+1985,Terengganu,651.6
+1985,W.P. Kuala Lumpur,1095.9
+1986,Johor,1926.5
+1986,Kedah,1256.2
+1986,Kelantan,1062.8
+1986,Melaka,505.6
+1986,Negeri Sembilan,653.7
+1986,Pahang,943.5
+1986,Perak,1950.8
+1986,Perlis,170.2
+1986,Pulau Pinang,1054.8
+1986,Sabah,1474.4
+1986,Sarawak,1539.5
+1986,Selangor,1992.6
+1986,Terengganu,678.3
+1986,W.P. Kuala Lumpur,1120.5
+1987,Johor,1977.9
+1987,Kedah,1281.1
+1987,Kelantan,1093.2
+1987,Melaka,513.1
+1987,Negeri Sembilan,668.9
+1987,Pahang,971.0
+1987,Perak,1967.5
+1987,Perlis,174.5
+1987,Pulau Pinang,1070.5
+1987,Sabah,1550.8
+1987,Sarawak,1576.0
+1987,Selangor,2079.7
+1987,Terengganu,704.3
+1987,W.P. Kuala Lumpur,1144.9
+1988,Johor,2031.0
+1988,Kedah,1305.4
+1988,Kelantan,1124.0
+1988,Melaka,520.5
+1988,Negeri Sembilan,683.5
+1988,Pahang,998.4
+1988,Perak,1979.5
+1988,Perlis,178.8
+1988,Pulau Pinang,1086.6
+1988,Sabah,1629.5
+1988,Sarawak,1614.6
+1988,Selangor,2166.9
+1988,Terengganu,730.9
+1988,W.P. Kuala Lumpur,1169.6
+1989,Johor,2085.5
+1989,Kedah,1328.8
+1989,Kelantan,1154.5
+1989,Melaka,527.4
+1989,Negeri Sembilan,698.2
+1989,Pahang,1025.9
+1989,Perak,1987.7
+1989,Perlis,182.9
+1989,Pulau Pinang,1103.4
+1989,Sabah,1708.9
+1989,Sarawak,1652.5
+1989,Selangor,2254.9
+1989,Terengganu,757.3
+1989,W.P. Kuala Lumpur,1194.1
+1990,Johor,2139.6
+1990,Kedah,1352.2
+1990,Kelantan,1187.2
+1990,Melaka,534.2
+1990,Negeri Sembilan,713.4
+1990,Pahang,1054.3
+1990,Perak,1992.9
+1990,Perlis,187.0
+1990,Pulau Pinang,1118.5
+1990,Sabah,1787.6
+1990,Sarawak,1687.8
+1990,Selangor,2345.4
+1990,Terengganu,784.6
+1990,W.P. Kuala Lumpur,1217.8
+1991,Johor,2188.1
+1991,Kedah,1371.3
+1991,Kelantan,1227.0
+1991,Melaka,540.2
+1991,Negeri Sembilan,726.2
+1991,Pahang,1079.6
+1991,Perak,1995.3
+1991,Perlis,190.7
+1991,Pulau Pinang,1133.6
+1991,Sabah,1814.5
+1991,Sarawak,1723.8
+1991,Selangor,2431.2
+1991,Terengganu,810.7
+1991,W.P. Kuala Lumpur,1262.1
+1991,W.P. Labuan,52.9
+1992,Johor,2249.1
+1992,Kedah,1402.1
+1992,Kelantan,1243.5
+1992,Melaka,551.8
+1992,Negeri Sembilan,741.7
+1992,Pahang,1104.2
+1992,Perak,2007.1
+1992,Perlis,192.7
+1992,Pulau Pinang,1154.0
+1992,Sabah,1896.6
+1992,Sarawak,1758.4
+1992,Selangor,2605.6
+1992,Terengganu,823.8
+1992,W.P. Kuala Lumpur,1281.5
+1992,W.P. Labuan,55.4
+1993,Johor,2313.4
+1993,Kedah,1434.1
+1993,Kelantan,1259.1
+1993,Melaka,563.3
+1993,Negeri Sembilan,757.0
+1993,Pahang,1128.0
+1993,Perak,2018.4
+1993,Perlis,194.7
+1993,Pulau Pinang,1174.7
+1993,Sabah,1981.9
+1993,Sarawak,1795.2
+1993,Selangor,2788.7
+1993,Terengganu,836.5
+1993,W.P. Kuala Lumpur,1298.7
+1993,W.P. Labuan,57.9
+1994,Johor,2378.1
+1994,Kedah,1466.6
+1994,Kelantan,1273.7
+1994,Melaka,574.9
+1994,Negeri Sembilan,772.4
+1994,Pahang,1152.3
+1994,Perak,2028.4
+1994,Perlis,196.7
+1994,Pulau Pinang,1195.9
+1994,Sabah,2068.9
+1994,Sarawak,1831.9
+1994,Selangor,2978.5
+1994,Terengganu,848.6
+1994,W.P. Kuala Lumpur,1314.4
+1994,W.P. Labuan,60.3
+1995,Johor,2441.4
+1995,Kedah,1500.2
+1995,Kelantan,1287.7
+1995,Melaka,586.1
+1995,Negeri Sembilan,787.5
+1995,Pahang,1176.5
+1995,Perak,2038.1
+1995,Perlis,198.8
+1995,Pulau Pinang,1216.6
+1995,Sabah,2155.9
+1995,Sarawak,1868.1
+1995,Selangor,3173.2
+1995,Terengganu,860.0
+1995,W.P. Kuala Lumpur,1328.9
+1995,W.P. Labuan,62.7
+1996,Johor,2503.9
+1996,Kedah,1533.2
+1996,Kelantan,1301.1
+1996,Melaka,597.3
+1996,Negeri Sembilan,802.6
+1996,Pahang,1200.6
+1996,Perak,2047.0
+1996,Perlis,200.4
+1996,Pulau Pinang,1237.5
+1996,Sabah,2245.0
+1996,Sarawak,1904.5
+1996,Selangor,3371.1
+1996,Terengganu,870.7
+1996,W.P. Kuala Lumpur,1342.5
+1996,W.P. Labuan,65.1
+1997,Johor,2567.5
+1997,Kedah,1566.9
+1997,Kelantan,1314.4
+1997,Melaka,608.8
+1997,Negeri Sembilan,818.0
+1997,Pahang,1224.7
+1997,Perak,2055.3
+1997,Perlis,202.1
+1997,Pulau Pinang,1259.0
+1997,Sabah,2333.7
+1997,Sarawak,1942.4
+1997,Selangor,3571.9
+1997,Terengganu,880.4
+1997,W.P. Kuala Lumpur,1356.4
+1997,W.P. Labuan,67.7
+1998,Johor,2631.7
+1998,Kedah,1601.2
+1998,Kelantan,1328.9
+1998,Melaka,620.5
+1998,Negeri Sembilan,833.5
+1998,Pahang,1248.8
+1998,Perak,2066.2
+1998,Perlis,203.8
+1998,Pulau Pinang,1282.7
+1998,Sabah,2423.5
+1998,Sarawak,1982.1
+1998,Selangor,3777.5
+1998,Terengganu,889.6
+1998,W.P. Kuala Lumpur,1373.0
+1998,W.P. Labuan,70.5
+1999,Johor,2699.4
+1999,Kedah,1636.5
+1999,Kelantan,1344.7
+1999,Melaka,633.1
+1999,Negeri Sembilan,849.5
+1999,Pahang,1272.5
+1999,Perak,2076.7
+1999,Perlis,205.7
+1999,Pulau Pinang,1307.5
+1999,Sabah,2513.5
+1999,Sarawak,2024.5
+1999,Selangor,3981.9
+1999,Terengganu,896.6
+1999,W.P. Kuala Lumpur,1394.0
+1999,W.P. Labuan,73.3
+2000,Johor,2762.5
+2000,Kedah,1671.9
+2000,Kelantan,1361.4
+2000,Melaka,646.6
+2000,Negeri Sembilan,866.1
+2000,Pahang,1295.8
+2000,Perak,2091.7
+2000,Perlis,207.6
+2000,Pulau Pinang,1332.7
+2000,Sabah,2603.5
+2000,Sarawak,2071.5
+2000,Selangor,4188.9
+2000,Terengganu,902.6
+2000,W.P. Kuala Lumpur,1416.0
+2000,W.P. Labuan,76.1
+2001,Johor,2829.9
+2001,Kedah,1703.9
+2001,Kelantan,1390.0
+2001,Melaka,665.8
+2001,Negeri Sembilan,883.7
+2001,Pahang,1317.3
+2001,Perak,2129.0
+2001,Perlis,210.4
+2001,Pulau Pinang,1361.0
+2001,Sabah,2663.3
+2001,Sarawak,2115.6
+2001,Selangor,4317.5
+2001,Terengganu,920.0
+2001,W.P. Kuala Lumpur,1446.2
+2001,W.P. Labuan,77.0
+2002,Johor,2893.6
+2002,Kedah,1734.8
+2002,Kelantan,1416.7
+2002,Melaka,684.1
+2002,Negeri Sembilan,900.3
+2002,Pahang,1338.7
+2002,Perak,2161.8
+2002,Perlis,213.2
+2002,Pulau Pinang,1387.3
+2002,Sabah,2719.1
+2002,Sarawak,2158.3
+2002,Selangor,4446.3
+2002,Terengganu,936.6
+2002,W.P. Kuala Lumpur,1474.1
+2002,W.P. Labuan,77.8
+2003,Johor,2954.0
+2003,Kedah,1763.7
+2003,Kelantan,1440.5
+2003,Melaka,701.8
+2003,Negeri Sembilan,916.8
+2003,Pahang,1360.0
+2003,Perak,2192.1
+2003,Perlis,216.0
+2003,Pulau Pinang,1412.2
+2003,Sabah,2774.0
+2003,Sarawak,2199.0
+2003,Selangor,4577.3
+2003,Terengganu,951.4
+2003,W.P. Kuala Lumpur,1500.5
+2003,W.P. Labuan,78.7
+2004,Johor,3014.6
+2004,Kedah,1792.4
+2004,Kelantan,1463.8
+2004,Melaka,719.8
+2004,Negeri Sembilan,933.7
+2004,Pahang,1380.2
+2004,Perak,2222.1
+2004,Perlis,218.8
+2004,Pulau Pinang,1436.6
+2004,Sabah,2833.4
+2004,Sarawak,2240.4
+2004,Selangor,4712.8
+2004,Terengganu,966.6
+2004,W.P. Kuala Lumpur,1526.4
+2004,W.P. Labuan,79.7
+2005,Johor,3074.4
+2005,Kedah,1820.3
+2005,Kelantan,1486.3
+2005,Melaka,737.3
+2005,Negeri Sembilan,950.3
+2005,Pahang,1400.8
+2005,Perak,2251.1
+2005,Perlis,221.6
+2005,Pulau Pinang,1460.4
+2005,Sabah,2897.0
+2005,Sarawak,2282.4
+2005,Selangor,4849.6
+2005,Terengganu,981.4
+2005,W.P. Kuala Lumpur,1551.8
+2005,W.P. Labuan,80.8
+2006,Johor,3134.4
+2006,Kedah,1847.5
+2006,Kelantan,1507.6
+2006,Melaka,755.0
+2006,Negeri Sembilan,967.0
+2006,Pahang,1421.2
+2006,Perak,2279.3
+2006,Perlis,224.4
+2006,Pulau Pinang,1484.1
+2006,Sabah,2962.9
+2006,Sarawak,2324.9
+2006,Selangor,4986.2
+2006,Terengganu,995.9
+2006,W.P. Kuala Lumpur,1577.5
+2006,W.P. Labuan,82.0
+2007,Johor,3193.5
+2007,Kedah,1874.2
+2007,Kelantan,1529.1
+2007,Melaka,772.8
+2007,Negeri Sembilan,983.5
+2007,Pahang,1441.4
+2007,Perak,2306.4
+2007,Perlis,227.2
+2007,Pulau Pinang,1507.8
+2007,Sabah,3032.3
+2007,Sarawak,2366.1
+2007,Selangor,5127.1
+2007,Terengganu,1010.4
+2007,W.P. Kuala Lumpur,1603.3
+2007,W.P. Labuan,83.2
+2008,Johor,3252.3
+2008,Kedah,1900.2
+2008,Kelantan,1549.8
+2008,Melaka,790.5
+2008,Negeri Sembilan,999.6
+2008,Pahang,1461.6
+2008,Perak,2331.6
+2008,Perlis,230.1
+2008,Pulau Pinang,1531.3
+2008,Sabah,3105.1
+2008,Sarawak,2408.4
+2008,Selangor,5268.5
+2008,Terengganu,1025.2
+2008,W.P. Kuala Lumpur,1628.9
+2008,W.P. Labuan,84.6
+2009,Johor,3309.4
+2009,Kedah,1925.3
+2009,Kelantan,1570.0
+2009,Melaka,807.8
+2009,Negeri Sembilan,1014.9
+2009,Pahang,1481.7
+2009,Perak,2355.7
+2009,Perlis,233.0
+2009,Pulau Pinang,1554.3
+2009,Sabah,3181.1
+2009,Sarawak,2450.8
+2009,Selangor,5417.8
+2009,Terengganu,1040.7
+2009,W.P. Kuala Lumpur,1652.8
+2009,W.P. Labuan,86.3
+2010,Johor,3362.9
+2010,Kedah,1949.3
+2010,Kelantan,1589.9
+2010,Melaka,823.6
+2010,Negeri Sembilan,1029.5
+2010,Pahang,1501.9
+2010,Perak,2379.0
+2010,Perlis,235.8
+2010,Pulau Pinang,1575.9
+2010,Sabah,3260.0
+2010,Sarawak,2487.1
+2010,Selangor,5502.1
+2010,Terengganu,1055.4
+2010,W.P. Kuala Lumpur,1674.8
+2010,W.P. Labuan,88.2
+2010,W.P. Putrajaya,73.4
+2011,Johor,3410.5
+2011,Kedah,1971.8
+2011,Kelantan,1618.8
+2011,Melaka,833.2
+2011,Negeri Sembilan,1047.4
+2011,Pahang,1526.8
+2011,Perak,2402.7
+2011,Perlis,237.3
+2011,Pulau Pinang,1601.0
+2011,Sabah,3345.5
+2011,Sarawak,2527.9
+2011,Selangor,5600.3
+2011,Terengganu,1079.0
+2011,W.P. Kuala Lumpur,1693.0
+2011,W.P. Labuan,89.4
+2011,W.P. Putrajaya,77.5
+2012,Johor,3450.4
+2012,Kedah,2001.1
+2012,Kelantan,1651.0
+2012,Melaka,843.2
+2012,Negeri Sembilan,1057.7
+2012,Pahang,1547.1
+2012,Perak,2427.0
+2012,Perlis,239.4
+2012,Pulau Pinang,1623.2
+2012,Sabah,3432.7
+2012,Sarawak,2569.7
+2012,Selangor,5702.4
+2012,Terengganu,1094.1
+2012,W.P. Kuala Lumpur,1702.1
+2012,W.P. Labuan,90.5
+2012,W.P. Putrajaya,78.3
+2013,Johor,3474.4
+2013,Kedah,2039.8
+2013,Kelantan,1683.5
+2013,Melaka,856.7
+2013,Negeri Sembilan,1072.2
+2013,Pahang,1568.7
+2013,Perak,2447.2
+2013,Perlis,242.1
+2013,Pulau Pinang,1662.6
+2013,Sabah,3611.5
+2013,Sarawak,2642.5
+2013,Selangor,5904.7
+2013,Terengganu,1113.4
+2013,W.P. Kuala Lumpur,1723.4
+2013,W.P. Labuan,91.4
+2013,W.P. Putrajaya,79.7
+2014,Johor,3559.8
+2014,Kedah,2062.7
+2014,Kelantan,1723.4
+2014,Melaka,871.7
+2014,Negeri Sembilan,1079.6
+2014,Pahang,1591.7
+2014,Perak,2458.8
+2014,Perlis,245.1
+2014,Pulau Pinang,1678.1
+2014,Sabah,3669.9
+2014,Sarawak,2664.0
+2014,Selangor,6051.3
+2014,Terengganu,1140.4
+2014,W.P. Kuala Lumpur,1737.4
+2014,W.P. Labuan,93.8
+2014,W.P. Putrajaya,80.9
+2015,Johor,3610.3
+2015,Kedah,2096.5
+2015,Kelantan,1760.6
+2015,Melaka,889.0
+2015,Negeri Sembilan,1088.8
+2015,Pahang,1607.9
+2015,Perak,2466.9
+2015,Perlis,248.5
+2015,Pulau Pinang,1698.1
+2015,Sabah,3720.5
+2015,Sarawak,2701.5
+2015,Selangor,6178.0
+2015,Terengganu,1161.0
+2015,W.P. Kuala Lumpur,1780.4
+2015,W.P. Labuan,95.1
+2015,W.P. Putrajaya,83.0
+2016,Johor,3651.8
+2016,Kedah,2119.7
+2016,Kelantan,1796.7
+2016,Melaka,901.1
+2016,Negeri Sembilan,1099.3
+2016,Pahang,1626.7
+2016,Perak,2482.1
+2016,Perlis,251.0
+2016,Pulau Pinang,1717.7
+2016,Sabah,3802.8
+2016,Sarawak,2738.7
+2016,Selangor,6291.5
+2016,Terengganu,1183.4
+2016,W.P. Kuala Lumpur,1789.7
+2016,W.P. Labuan,96.8
+2016,W.P. Putrajaya,84.4
+2017,Johor,3697.0
+2017,Kedah,2143.9
+2017,Kelantan,1829.0
+2017,Melaka,913.1
+2017,Negeri Sembilan,1114.0
+2017,Pahang,1647.0
+2017,Perak,2493.2
+2017,Perlis,252.0
+2017,Pulau Pinang,1744.1
+2017,Sabah,3855.9
+2017,Sarawak,2766.3
+2017,Selangor,6380.7
+2017,Terengganu,1208.0
+2017,W.P. Kuala Lumpur,1793.2
+2017,W.P. Labuan,97.6
+2017,W.P. Putrajaya,87.5
+2018,Johor,3749.4
+2018,Kedah,2163.0
+2018,Kelantan,1860.5
+2018,Melaka,922.4
+2018,Negeri Sembilan,1122.9
+2018,Pahang,1664.7
+2018,Perak,2503.5
+2018,Perlis,253.5
+2018,Pulau Pinang,1762.8
+2018,Sabah,3898.4
+2018,Sarawak,2791.7
+2018,Selangor,6475.0
+2018,Terengganu,1228.3
+2018,W.P. Kuala Lumpur,1790.0
+2018,W.P. Labuan,99.0
+2018,W.P. Putrajaya,97.2
+2019,Johor,3761.2
+2019,Kedah,2173.7
+2019,Kelantan,1883.8
+2019,Melaka,928.4
+2019,Negeri Sembilan,1126.2
+2019,Pahang,1671.4
+2019,Perak,2508.8
+2019,Perlis,254.0
+2019,Pulau Pinang,1768.8
+2019,Sabah,3904.4
+2019,Sarawak,2806.0
+2019,Selangor,6506.1
+2019,Terengganu,1244.5
+2019,W.P. Kuala Lumpur,1782.5
+2019,W.P. Labuan,99.3
+2019,W.P. Putrajaya,103.7
+2020,Johor,4009.7
+2020,Kedah,2131.4
+2020,Kelantan,1792.5
+2020,Melaka,998.4
+2020,Negeri Sembilan,1200.0
+2020,Pahang,1591.3
+2020,Perak,2496.0
+2020,Perlis,284.9
+2020,Pulau Pinang,1740.4
+2020,Sabah,3418.8
+2020,Sarawak,2453.7
+2020,Selangor,6994.4
+2020,Terengganu,1149.4
+2020,W.P. Kuala Lumpur,1982.1
+2020,W.P. Labuan,95.1
+2020,W.P. Putrajaya,109.2
+2021,Johor,4020.0
+2021,Kedah,2151.7
+2021,Kelantan,1812.3
+2021,Melaka,1004.5
+2021,Negeri Sembilan,1204.2
+2021,Pahang,1601.5
+2021,Perak,2515.8
+2021,Perlis,287.6
+2021,Pulau Pinang,1740.0
+2021,Sabah,3412.6
+2021,Sarawak,2465.6
+2021,Selangor,7014.7
+2021,Terengganu,1170.7
+2021,W.P. Kuala Lumpur,1964.0
+2021,W.P. Labuan,96.0
+2021,W.P. Putrajaya,115.2
+2022,Johor,4028.3
+2022,Kedah,2163.1
+2022,Kelantan,1830.6
+2022,Melaka,1008.6
+2022,Negeri Sembilan,1207.9
+2022,Pahang,1614.3
+2022,Perak,2514.4
+2022,Perlis,289.8
+2022,Pulau Pinang,1740.9
+2022,Sabah,3414.9
+2022,Sarawak,2473.5
+2022,Selangor,7050.3
+2022,Terengganu,1186.6
+2022,W.P. Kuala Lumpur,1961.2
+2022,W.P. Labuan,96.9
+2022,W.P. Putrajaya,117.0
+2023,Johor,4107.2
+2023,Kedah,2189.3
+2023,Kelantan,1859.8
+2023,Melaka,1028.3
+2023,Negeri Sembilan,1224.9
+2023,Pahang,1643.2
+2023,Perak,2541.2
+2023,Perlis,293.1
+2023,Pulau Pinang,1772.6
+2023,Sabah,3596.7
+2023,Sarawak,2502.3
+2023,Selangor,7209.7
+2023,Terengganu,1210.0
+2023,W.P. Kuala Lumpur,2005.7
+2023,W.P. Labuan,99.0
+2023,W.P. Putrajaya,118.8
+2024,Johor,4184.4
+2024,Kedah,2217.1
+2024,Kelantan,1887.9
+2024,Melaka,1046.7
+2024,Negeri Sembilan,1239.5
+2024,Pahang,1667.7
+2024,Perak,2569.4
+2024,Perlis,296.8
+2024,Pulau Pinang,1800.5
+2024,Sabah,3742.0
+2024,Sarawak,2517.5
+2024,Selangor,7362.7
+2024,Terengganu,1231.5
+2024,W.P. Kuala Lumpur,2067.5
+2024,W.P. Labuan,100.8
+2024,W.P. Putrajaya,120.3
+2025,Johor,4205.9
+2025,Kedah,2228.0
+2025,Kelantan,1907.7
+2025,Melaka,1052.5
+2025,Negeri Sembilan,1244.6
+2025,Pahang,1678.2
+2025,Perak,2574.9
+2025,Perlis,297.8
+2025,Pulau Pinang,1803.3
+2025,Sabah,3759.6
+2025,Sarawak,2529.8
+2025,Selangor,7406.8
+2025,Terengganu,1246.9
+2025,W.P. Kuala Lumpur,2074.1
+2025,W.P. Labuan,100.9
+2025,W.P. Putrajaya,120.8
