@@ -43,7 +43,15 @@
       },
       "transform": [
         {
-          "calculate": "'Data is not available in ' + datum.properties.name",
+          "calculate": "datum.properties.name === 'Kuala Lumpur' ? 'W.P. Kuala Lumpur' : datum.properties.name === 'Putrajaya' ? 'W.P. Putrajaya' : datum.properties.name === 'Labuan' ? 'W.P. Labuan' : datum.properties.name",
+          "as": "state_display"
+        },
+        {
+          "calculate": "'Data is not available in ' + datum.state_display",
+          "as": "note"
+        },
+        {
+          "calculate": "'Data is not available in ' + datum.state_display + ', ' + datum.properties.admin",
           "as": "note"
         }
       ],
@@ -105,8 +113,8 @@
           "type": "quantitative",
           "scale": {
             "domain": [
-              20,
-              200
+              30,
+              250
             ],
             "nice": true,
             "scheme": "oranges"
@@ -162,20 +170,35 @@
           }
         },
         {
-          "filter": "datum.state == 'Terengganu' || datum.state == 'Perlis' || datum.state == 'Kelantan' || datum.state == 'Pulau Pinang' || datum.state == 'W.P. Kuala Lumpur' || datum.state == 'Kedah' ||  datum.state == 'Sabah'"
-        },
-        {
           "filter": "datum.year == Year_selection"
         },
         {
           "calculate": "datum.drug_addicts / datum.population * 100",
           "as": "rate_per_100k"
+        },
+        {
+          "window": [
+            {
+              "op": "rank",
+              "as": "ranking"
+            }
+          ],
+          "sort": [
+            {
+              "field": "rate_per_100k",
+              "order": "descending"
+            }
+          ]
+        },
+        {
+          "filter": "datum.ranking <= 3"
         }
       ],
       "mark": {
         "type": "text",
         "fontStyle": "italic",
-        "fontWeight": "bold"
+        "fontWeight": "bold",
+        "dy": -15
       },
       "encoding": {
         "text": {
