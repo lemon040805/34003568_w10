@@ -109,7 +109,7 @@
               200
             ],
             "nice": true,
-            "scheme": "reds"
+            "scheme": "oranges"
           },
           "legend": {
             "title": "Drug Addicts per 100,000",
