@@ -28,6 +28,31 @@
   </section>
 
   <div class="container-fluid my-4">
+    
+    <!-- TREND CARD -->
+    <div class="row justify-content-center mb-5">
+      <div class="wide-col">
+        <div class="card shadow-lg">
+          <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">Trend of Reported Drug Addiction Cases in Malaysia (2000–2019)</h5>
+          </div>
+          <div class="card-body">
+            <div id="trend-slider-host" class="slider-host mb-2"></div>
+            <div class="viz-wrap d-flex justify-content-center">
+              <div id="trend-vis" class="viz-box"></div>
+            </div>
+            <hr>
+            <div class="text-right source">
+              Sources:
+              <a href="https://archive.data.gov.my/data/en_US/dataset/number-of-drug-addicts-by-sex-malaysia" target="_blank" rel="noopener noreferrer">
+                Number of Drug Addicts by Sex, Malaysia – data.gov.my
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- MAP CARD -->
     <div class="row justify-content-center mb-4">
       <div class="wide-col">
@@ -86,7 +111,17 @@
     </div>
   </div>
 
+  
+
   <script>
+    vegaEmbed('#trend-vis',
+      'https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/drug_trend.vg.json',
+      {mode: 'vega-lite', actions: false}
+    ).then(res => {
+        const host = document.getElementById('trend-slider-host');
+        const bindings = res?.view?.container()?.querySelector('.vega-bindings');
+        if (bindings && host) host.appendChild(bindings);
+      });
     vegaEmbed('#map-vis',
       'https://raw.githubusercontent.com/lemon040805/34003568_w10/main/js/drug_by_state.vg.json',
       {mode: 'vega-lite', actions: false}
